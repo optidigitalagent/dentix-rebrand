@@ -11,7 +11,7 @@ const title = "Ортодонтія та брекети — клініка DENTI
 const description =
   "Ортодонтичне лікування у DENTIX: консультація ортодонта, план лікування, лігатурні та самолігуючі брекет-системи, ортодонтичні апарати.";
 
-export const Route = createFileRoute("/ortodontiya/html")({
+export const Route = createFileRoute("/ortodontiya.html")({
   head: () => ({
     meta: [
       { title },

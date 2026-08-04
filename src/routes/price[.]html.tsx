@@ -9,7 +9,7 @@ const title = "Ціни на стоматологічні послуги — DEN
 const description =
   "Прайс клініки DENTIX: профілактика, пародонтологія, терапія, ортодонтія, ортопедія та хірургія. Актуальну вартість уточнюйте телефоном.";
 
-export const Route = createFileRoute("/price/html")({
+export const Route = createFileRoute("/price.html")({
   head: () => ({
     meta: [
       { title },
