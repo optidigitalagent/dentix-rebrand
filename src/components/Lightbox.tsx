@@ -40,6 +40,8 @@ export function Lightbox({
 
   if (!open) return null;
   const item = items[index];
+  if (!item) return null;
+
 
   return (
     <div className="lightbox open" role="dialog" aria-modal="true" onClick={onClose}>
