@@ -2636,24 +2636,20 @@ body {
 }
 .nav {
   min-height: var(--header-height);
-  background:
-    radial-gradient(circle at 88% 7%, rgba(153, 214, 177, 0.15), transparent 18rem),
-    linear-gradient(155deg, rgba(23, 74, 51, 0.93), rgba(7, 34, 23, 0.95));
-  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(0, 0, 0, 0.14);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
   box-shadow: none;
-  backdrop-filter: blur(18px) saturate(125%);
+  backdrop-filter: blur(42px) saturate(85%) brightness(65%);
   transition:
     background 0.35s var(--ease),
     border-color 0.35s var(--ease),
     backdrop-filter 0.35s var(--ease);
 }
 .nav.scrolled {
-  background:
-    radial-gradient(circle at 88% 7%, rgba(153, 214, 177, 0.15), transparent 18rem),
-    linear-gradient(155deg, rgba(23, 74, 51, 0.93), rgba(7, 34, 23, 0.95));
-  border-bottom-color: rgba(255, 255, 255, 0.14);
+  background: rgba(0, 0, 0, 0.14);
+  border-bottom-color: rgba(255, 255, 255, 0.18);
   box-shadow: none;
-  backdrop-filter: blur(18px) saturate(125%);
+  backdrop-filter: blur(42px) saturate(85%) brightness(65%);
 }
 .nav-inner {
   height: var(--header-height);
@@ -2692,11 +2688,9 @@ body {
   overflow-x: hidden;
   overflow-y: auto;
   overscroll-behavior: contain;
-  background:
-    radial-gradient(circle at 88% 7%, rgba(153, 214, 177, 0.15), transparent 18rem),
-    linear-gradient(155deg, rgba(23, 74, 51, 0.93), rgba(7, 34, 23, 0.95));
-  border-top: 1px solid rgba(255, 255, 255, 0.14);
-  backdrop-filter: blur(18px) saturate(125%);
+  background: rgba(0, 0, 0, 0.14);
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(42px) saturate(85%) brightness(65%);
 }
 .nav-mobile a {
   display: flex;
@@ -2719,6 +2713,16 @@ body {
   margin-top: 8px;
   font-size: 13px !important;
   color: #fff;
+}
+main#top,
+footer,
+.mobile-call-bar {
+  transition: filter 0.28s var(--ease);
+}
+body:has(.nav-mobile.open) main#top,
+body:has(.nav-mobile.open) footer,
+body:has(.nav-mobile.open) .mobile-call-bar {
+  filter: blur(14px);
 }
 
 .price-hero {
