@@ -2636,20 +2636,24 @@ body {
 }
 .nav {
   min-height: var(--header-height);
-  background: rgba(0, 0, 0, 0.52);
+  background:
+    radial-gradient(circle at 88% 7%, rgba(153, 214, 177, 0.15), transparent 18rem),
+    linear-gradient(155deg, rgba(23, 74, 51, 0.93), rgba(7, 34, 23, 0.95));
   border-bottom: 1px solid rgba(255, 255, 255, 0.14);
   box-shadow: none;
-  backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px) saturate(125%);
   transition:
     background 0.35s var(--ease),
     border-color 0.35s var(--ease),
     backdrop-filter 0.35s var(--ease);
 }
 .nav.scrolled {
-  background: rgba(0, 0, 0, 0.52);
+  background:
+    radial-gradient(circle at 88% 7%, rgba(153, 214, 177, 0.15), transparent 18rem),
+    linear-gradient(155deg, rgba(23, 74, 51, 0.93), rgba(7, 34, 23, 0.95));
   border-bottom-color: rgba(255, 255, 255, 0.14);
   box-shadow: none;
-  backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px) saturate(125%);
 }
 .nav-inner {
   height: var(--header-height);
@@ -2688,9 +2692,11 @@ body {
   overflow-x: hidden;
   overflow-y: auto;
   overscroll-behavior: contain;
-  background: rgba(0, 0, 0, 0.52);
+  background:
+    radial-gradient(circle at 88% 7%, rgba(153, 214, 177, 0.15), transparent 18rem),
+    linear-gradient(155deg, rgba(23, 74, 51, 0.93), rgba(7, 34, 23, 0.95));
   border-top: 1px solid rgba(255, 255, 255, 0.14);
-  backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px) saturate(125%);
 }
 .nav-mobile a {
   display: flex;
