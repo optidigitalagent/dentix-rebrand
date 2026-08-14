@@ -1,9 +1,9 @@
-import dentixOfficialLogo from "@/assets/dentix-official-logo.png";
+import dentixLogoMark from "@/assets/dentix-logo-mark.png";
 
 export const site = {
   name: "DENTIX",
   tagline: "Стоматологічна клініка",
-  logo: dentixOfficialLogo,
+  logo: dentixLogoMark,
   contactDataReady: false,
   bookingFormReady: false,
   phonePrimary: "Телефон буде додано",

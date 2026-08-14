@@ -1,9 +1,12 @@
 import { useEffect, useRef, useState } from "react";
+import { useRouterState } from "@tanstack/react-router";
 import { Brand } from "./Brand";
 import { site } from "@/data/site";
 import { siteHref } from "@/lib/site-href";
 
 export function Header() {
+  const pathname = useRouterState({ select: (state) => state.location.pathname });
+  const isPricePage = pathname.endsWith("/price.html");
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
@@ -103,6 +106,11 @@ export function Header() {
         aria-hidden={!open}
         inert={!open ? true : undefined}
       >
+        {isPricePage ? (
+          <a href={siteHref("/")} onClick={() => setOpen(false)}>
+            Головна
+          </a>
+        ) : null}
         {site.nav.map((item) => (
           <a key={item.label} href={siteHref(item.to)} onClick={() => setOpen(false)}>
             {item.label}

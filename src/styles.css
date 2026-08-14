@@ -2636,23 +2636,19 @@ body {
 }
 .nav {
   min-height: var(--header-height);
-  background: rgba(11, 55, 36, 0.56);
-  border-bottom: 1px solid var(--glass-border);
-  box-shadow: inset 0 1px rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(14px) saturate(125%);
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  box-shadow: none;
+  backdrop-filter: none;
   transition:
-    background 0.35s var(--ease),
-    border-color 0.35s var(--ease),
-    box-shadow 0.35s var(--ease),
-    backdrop-filter 0.35s var(--ease);
+    color 0.35s var(--ease),
+    text-shadow 0.35s var(--ease);
 }
 .nav.scrolled {
-  background: rgba(8, 43, 29, 0.76);
-  border-bottom-color: rgba(255, 255, 255, 0.22);
-  box-shadow:
-    0 16px 42px rgba(1, 18, 11, 0.22),
-    inset 0 1px rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(18px) saturate(130%);
+  background: transparent;
+  border-bottom-color: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
 }
 .nav-inner {
   height: var(--header-height);
@@ -2677,6 +2673,7 @@ body {
 .nav-links a {
   color: #fff;
   opacity: 0.94;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.52);
 }
 .nav-mobile {
   top: var(--header-height);
@@ -2690,11 +2687,9 @@ body {
   overflow-x: hidden;
   overflow-y: auto;
   overscroll-behavior: contain;
-  background:
-    radial-gradient(circle at 88% 7%, rgba(153, 214, 177, 0.15), transparent 18rem),
-    linear-gradient(155deg, rgba(23, 74, 51, 0.93), rgba(7, 34, 23, 0.95));
+  background: rgba(0, 0, 0, 0.52);
   border-top: 1px solid rgba(255, 255, 255, 0.14);
-  backdrop-filter: blur(18px) saturate(125%);
+  backdrop-filter: blur(18px);
 }
 .nav-mobile a {
   display: flex;
@@ -2768,7 +2763,7 @@ body {
   border-color: var(--glass-border);
   border-top: 1px solid var(--glass-border);
   border-bottom: 1px solid var(--glass-border);
-  background: var(--glass-green-strong);
+  background: rgba(0, 0, 0, 0.28);
   box-shadow:
     0 18px 48px rgba(1, 18, 11, 0.2),
     inset 0 1px var(--glass-highlight);
@@ -2806,7 +2801,7 @@ body {
   scroll-margin-top: calc(var(--header-height) + 106px);
 }
 .back-to-top {
-  background: var(--glass-green-strong);
+  background: rgba(0, 0, 0, 0.28);
   border-color: var(--glass-border);
   box-shadow:
     0 16px 44px rgba(1, 18, 11, 0.28),
