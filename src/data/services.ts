@@ -32,8 +32,8 @@ export const services: Service[] = [
     num: "04",
     title: "Ортодонтія",
     text: "Лігатурні й самолігуючі брекет-системи та ортодонтичні апарати.",
-    linkLabel: "Дізнатися про ортодонтію",
-    href: "/ortodontiya.html",
+    linkLabel: "Відкрити прайс",
+    href: "/price.html#ortodontiya",
   },
   {
     num: "05",

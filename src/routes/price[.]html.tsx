@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import type { CSSProperties } from "react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
 import { ContactSection } from "@/components/ContactSection";
@@ -29,7 +30,10 @@ export const Route = createFileRoute("/price.html")({
 function PricePage() {
   return (
     <SiteLayout>
-      <section className="price-hero">
+      <section
+        className="price-hero"
+        style={{ "--price-hero-image": `url(${priceHeroImg})` } as CSSProperties}
+      >
         <div className="wrap price-hero-grid">
           <div className="price-hero-copy">
             <nav className="breadcrumbs" aria-label="Навігація">
@@ -57,26 +61,19 @@ function PricePage() {
               </a>
             </div>
           </div>
-          <figure className="price-hero-media" data-content-slot="price-hero">
-            <img
-              src={priceHeroImg}
-              alt="Візуальний блок сторінки цін DENTIX"
-              width={1000}
-              height={1200}
-            />
-            <figcaption>Візуальний слот прайсу</figcaption>
-          </figure>
         </div>
       </section>
 
       <div className="wrap price-content">
-        <nav className="price-quick" aria-label="Категорії прайсу">
-          {priceBlocks.map((b) => (
-            <a key={b.id} href={`#${b.id}`}>
-              {b.kicker}
-            </a>
-          ))}
-        </nav>
+        <div className="price-quick-shell">
+          <nav className="price-quick" aria-label="Категорії прайсу">
+            {priceBlocks.map((b) => (
+              <a key={b.id} href={`#${b.id}`}>
+                {b.kicker}
+              </a>
+            ))}
+          </nav>
+        </div>
 
         <div className="price-list">
           {priceBlocks.map((b, i) => (

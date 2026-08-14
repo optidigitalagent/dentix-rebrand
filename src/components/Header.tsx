@@ -7,7 +7,7 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
-  const mobileNavRef = useRef<HTMLDivElement>(null);
+  const mobileNavRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -17,14 +17,41 @@ export function Header() {
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
+    const previousBodyOverflow = document.body.style.overflow;
+    const previousRootOverflow = document.documentElement.style.overflow;
+    document.body.style.overflow = open ? "hidden" : previousBodyOverflow;
+    document.documentElement.style.overflow = open ? "hidden" : previousRootOverflow;
+
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape" && open) {
         setOpen(false);
         menuButtonRef.current?.focus();
       }
+
+      if (event.key === "Tab" && open && mobileNavRef.current) {
+        const focusable = [
+          menuButtonRef.current,
+          ...mobileNavRef.current.querySelectorAll<HTMLElement>("a[href], button:not([disabled])"),
+        ].filter((item): item is HTMLElement => Boolean(item));
+        const first = focusable[0];
+        const last = focusable.at(-1);
+
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last?.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first?.focus();
+        }
+      }
     };
+
+    const onResize = () => {
+      if (window.innerWidth >= 1024) setOpen(false);
+    };
+
     document.addEventListener("keydown", onKeyDown);
+    window.addEventListener("resize", onResize);
     const focusTimer = open
       ? window.setTimeout(
           () => mobileNavRef.current?.querySelector<HTMLAnchorElement>("a")?.focus(),
@@ -32,8 +59,10 @@ export function Header() {
         )
       : undefined;
     return () => {
-      document.body.style.overflow = "";
+      document.body.style.overflow = previousBodyOverflow;
+      document.documentElement.style.overflow = previousRootOverflow;
       document.removeEventListener("keydown", onKeyDown);
+      window.removeEventListener("resize", onResize);
       if (focusTimer) window.clearTimeout(focusTimer);
     };
   }, [open]);
@@ -66,10 +95,11 @@ export function Header() {
         </button>
       </div>
 
-      <div
+      <nav
         ref={mobileNavRef}
         className={`nav-mobile${open ? " open" : ""}`}
         id="nav-mobile"
+        aria-label="Мобільна навігація"
         aria-hidden={!open}
         inert={!open ? true : undefined}
       >
@@ -88,7 +118,7 @@ export function Header() {
         ) : (
           <span className="nav-mobile-phone nav-mobile-placeholder">Контактні дані готуються</span>
         )}
-      </div>
+      </nav>
     </header>
   );
 }

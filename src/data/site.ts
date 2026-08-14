@@ -1,8 +1,9 @@
+import dentixOfficialLogo from "@/assets/dentix-official-logo.png";
+
 export const site = {
   name: "DENTIX",
   tagline: "Стоматологічна клініка",
-  /** Очікує офіційний файл логотипу від власника. Не генерувати заміну. */
-  logo: "" as string,
+  logo: dentixOfficialLogo,
   contactDataReady: false,
   bookingFormReady: false,
   phonePrimary: "Телефон буде додано",
@@ -19,7 +20,6 @@ export const site = {
   mapLink: "",
   nav: [
     { label: "Послуги", to: "/#services" },
-    { label: "Ортодонтія", to: "/ortodontiya.html" },
     { label: "Про клініку", to: "/#about" },
     { label: "Сертифікати", to: "/#certificates" },
     { label: "Кейси", to: "/#cases" },

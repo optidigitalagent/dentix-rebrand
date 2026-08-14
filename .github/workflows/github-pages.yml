@@ -45,7 +45,6 @@ jobs:
         run: |
           cp dist-pages/index.html dist-pages/404.html
           cp dist-pages/index.html dist-pages/price.html
-          cp dist-pages/index.html dist-pages/ortodontiya.html
           touch dist-pages/.nojekyll
 
       - name: Upload Pages artifact

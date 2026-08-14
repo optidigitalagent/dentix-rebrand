@@ -10,17 +10,11 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as OrtodontiyaDothtmlRouteImport } from './routes/ortodontiya[.]html'
 import { Route as PriceDothtmlRouteImport } from './routes/price[.]html'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const OrtodontiyaDothtmlRoute = OrtodontiyaDothtmlRouteImport.update({
-  id: '/ortodontiya.html',
-  path: '/ortodontiya.html',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PriceDothtmlRoute = PriceDothtmlRouteImport.update({
@@ -31,31 +25,27 @@ const PriceDothtmlRoute = PriceDothtmlRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/ortodontiya.html': typeof OrtodontiyaDothtmlRoute
   '/price.html': typeof PriceDothtmlRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/ortodontiya.html': typeof OrtodontiyaDothtmlRoute
   '/price.html': typeof PriceDothtmlRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/ortodontiya.html': typeof OrtodontiyaDothtmlRoute
   '/price.html': typeof PriceDothtmlRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/ortodontiya.html' | '/price.html'
+  fullPaths: '/' | '/price.html'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/ortodontiya.html' | '/price.html'
-  id: '__root__' | '/' | '/ortodontiya.html' | '/price.html'
+  to: '/' | '/price.html'
+  id: '__root__' | '/' | '/price.html'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  OrtodontiyaDothtmlRoute: typeof OrtodontiyaDothtmlRoute
   PriceDothtmlRoute: typeof PriceDothtmlRoute
 }
 
@@ -66,13 +56,6 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/ortodontiya.html': {
-      id: '/ortodontiya.html'
-      path: '/ortodontiya.html'
-      fullPath: '/ortodontiya.html'
-      preLoaderRoute: typeof OrtodontiyaDothtmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/price.html': {
@@ -87,7 +70,6 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  OrtodontiyaDothtmlRoute: OrtodontiyaDothtmlRoute,
   PriceDothtmlRoute: PriceDothtmlRoute,
 }
 export const routeTree = rootRouteImport
