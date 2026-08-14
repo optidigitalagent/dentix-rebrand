@@ -6,6 +6,7 @@ import { FaqList } from "@/components/FaqList";
 import { ContactSection } from "@/components/ContactSection";
 import { orthodontics as o } from "@/data/orthodontics";
 import { site } from "@/data/site";
+import { siteHref } from "@/lib/site-href";
 
 const title = "Ортодонтія та брекети — клініка DENTIX";
 const description =
@@ -32,7 +33,8 @@ function OrthoPage() {
         <div className="wrap service-hero-grid">
           <div className="service-hero-copy">
             <nav className="breadcrumbs" aria-label="Навігація">
-              <a href="/">Головна</a> <span aria-hidden="true">/</span> <span>Ортодонтія</span>
+              <a href={siteHref("/")}>Головна</a> <span aria-hidden="true">/</span>{" "}
+              <span>Ортодонтія</span>
             </nav>
             <p className="eyebrow">{o.eyebrow}</p>
             <h1 className="hero-title">{o.h1}</h1>
@@ -41,7 +43,7 @@ function OrthoPage() {
               <a className="btn" href="#contact">
                 Записатися на консультацію
               </a>
-              <a className="btn btn-ghost" href="/price.html#ortodontiya">
+              <a className="btn btn-ghost" href={siteHref("/price.html#ortodontiya")}>
                 Ціни на ортодонтію <span aria-hidden="true">→</span>
               </a>
             </div>
@@ -56,9 +58,15 @@ function OrthoPage() {
                 </li>
               ))}
             </ul>
-            <a className="btn btn-block" href={site.phonePrimaryHref}>
-              {site.phonePrimary}
-            </a>
+            {site.contactDataReady ? (
+              <a className="btn btn-block" href={site.phonePrimaryHref}>
+                {site.phonePrimary}
+              </a>
+            ) : (
+              <a className="btn btn-block" href={siteHref("/#contact-info")}>
+                Контактні дані готуються
+              </a>
+            )}
           </Reveal>
         </div>
       </section>
@@ -101,7 +109,7 @@ function OrthoPage() {
                   </ul>
                 ) : null}
                 {opt.link ? (
-                  <a className="svc-link" href={opt.link.href}>
+                  <a className="svc-link" href={siteHref(opt.link.href)}>
                     {opt.link.label}
                   </a>
                 ) : null}
@@ -139,10 +147,16 @@ function OrthoPage() {
         <div className="wrap service-cta-inner">
           <h2>Потрібна консультація ортодонта?</h2>
           <div className="service-cta-actions">
-            <a className="btn" href={site.phonePrimaryHref}>
-              {site.phonePrimary}
-            </a>
-            <a className="btn btn-ghost" href="/price.html#ortodontiya">
+            {site.contactDataReady ? (
+              <a className="btn" href={site.phonePrimaryHref}>
+                {site.phonePrimary}
+              </a>
+            ) : (
+              <a className="btn" href={siteHref("/#contact-info")}>
+                Контактні дані готуються
+              </a>
+            )}
+            <a className="btn btn-ghost" href={siteHref("/price.html#ortodontiya")}>
               Прайс
             </a>
           </div>

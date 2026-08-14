@@ -1,5 +1,6 @@
 import { Brand } from "./Brand";
 import { site } from "@/data/site";
+import { siteHref } from "@/lib/site-href";
 
 export function Footer() {
   return (
@@ -8,8 +9,8 @@ export function Footer() {
         <div className="footer-brand-col">
           <Brand variant="footer" />
           <p className="footer-tagline">
-            Стоматологія повного циклу DENTIX: лікування, ортодонтія, імплантація та
-            відновлення усмішки.
+            Стоматологія повного циклу DENTIX: лікування, ортодонтія, імплантація та відновлення
+            усмішки.
           </p>
         </div>
         <div className="footer-contact">
@@ -33,9 +34,17 @@ export function Footer() {
               </svg>
             </span>
             <span>
-              <a href={site.phonePrimaryHref}>{site.phonePrimary}</a>
+              {site.contactDataReady ? (
+                <a href={site.phonePrimaryHref}>{site.phonePrimary}</a>
+              ) : (
+                site.phonePrimary
+              )}
               <br />
-              <a href={site.phoneSecondaryHref}>{site.phoneSecondary}</a>
+              {site.contactDataReady ? (
+                <a href={site.phoneSecondaryHref}>{site.phoneSecondary}</a>
+              ) : (
+                site.phoneSecondary
+              )}
             </span>
           </div>
           <div className="footer-contact-item">
@@ -56,7 +65,7 @@ export function Footer() {
       <div className="wrap footer-mini">
         <nav className="footer-links" aria-label="Меню у підвалі">
           {site.nav.map((item) => (
-            <a key={item.label} href={item.to}>
+            <a key={item.label} href={siteHref(item.to)}>
               {item.label}
             </a>
           ))}

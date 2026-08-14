@@ -1,6 +1,7 @@
 import { services } from "@/data/services";
 import { Reveal } from "./Reveal";
 import { SectionHeading } from "./SectionHeading";
+import { siteHref } from "@/lib/site-href";
 
 export function ServicesGrid() {
   return (
@@ -19,7 +20,7 @@ export function ServicesGrid() {
                 <h3>{s.title}</h3>
                 <p>{s.text}</p>
               </div>
-              <a className="svc-link" href={s.href}>
+              <a className="svc-link" href={siteHref(s.href)}>
                 {s.linkLabel} <span aria-hidden="true">→</span>
               </a>
             </Reveal>

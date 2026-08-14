@@ -1,6 +1,16 @@
 import { site } from "@/data/site";
+import { siteHref } from "@/lib/site-href";
 
 export function StickyCallButton() {
+  if (!site.contactDataReady) {
+    return (
+      <a className="mobile-call-bar" href={siteHref("/#contact")}>
+        <span aria-hidden="true">↘</span>
+        Контакти
+      </a>
+    );
+  }
+
   return (
     <a className="mobile-call-bar" href={site.phonePrimaryHref}>
       <svg

@@ -3,6 +3,7 @@ import about1 from "@/assets/about-1.jpg";
 import about2 from "@/assets/about-2.jpg";
 import about3 from "@/assets/about-3.jpg";
 import { Reveal } from "./Reveal";
+import { siteHref } from "@/lib/site-href";
 
 const slides = [
   { src: about1, alt: "Інтер'єр клініки DENTIX" },
@@ -33,7 +34,7 @@ export function AboutSection() {
             {slides.map((s, idx) => (
               <img
                 key={s.src}
-                className={`about-slide${idx === i ? " active" : ""}`}
+                className={`about-slide${idx === i ? " is-active" : ""}`}
                 src={s.src}
                 alt={s.alt}
                 loading="lazy"
@@ -57,7 +58,7 @@ export function AboutSection() {
               {slides.map((s, idx) => (
                 <button
                   key={s.src}
-                  className={idx === i ? "active" : ""}
+                  className={idx === i ? "is-active" : ""}
                   aria-label={`Фото ${idx + 1}`}
                   onClick={() => setI(idx)}
                 />
@@ -70,8 +71,8 @@ export function AboutSection() {
           <span className="sec-kicker">Про клініку</span>
           <h2 className="sec-title">Клініка DENTIX</h2>
           <p className="sec-lede">
-            DENTIX — стоматологія повного циклу: профілактика, терапія, пародонтологія,
-            ортодонтія, ортопедія та хірургія в одному місці.
+            DENTIX — стоматологія повного циклу: профілактика, терапія, пародонтологія, ортодонтія,
+            ортопедія та хірургія в одному місці.
           </p>
           <p className="sec-lede">
             План лікування складають після огляду й діагностики, а вартість основних послуг
@@ -87,7 +88,7 @@ export function AboutSection() {
               </li>
             ))}
           </ul>
-          <a className="btn btn-ghost" href="/price.html">
+          <a className="btn btn-ghost" href={siteHref("/price.html")}>
             Переглянути прайс <span aria-hidden="true">→</span>
           </a>
         </Reveal>
