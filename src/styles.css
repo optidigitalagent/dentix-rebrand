@@ -2688,9 +2688,9 @@ body {
   overflow-x: hidden;
   overflow-y: auto;
   overscroll-behavior: contain;
-  background: transparent;
+  background: rgba(0, 0, 0, 0.14);
   border-top: 1px solid rgba(255, 255, 255, 0.18);
-  backdrop-filter: blur(18px);
+  backdrop-filter: blur(42px) saturate(85%) brightness(65%);
 }
 .nav-mobile a {
   display: flex;
@@ -2713,6 +2713,16 @@ body {
   margin-top: 8px;
   font-size: 13px !important;
   color: #fff;
+}
+main#top,
+footer,
+.mobile-call-bar {
+  transition: filter 0.28s var(--ease);
+}
+body:has(.nav-mobile.open) main#top,
+body:has(.nav-mobile.open) footer,
+body:has(.nav-mobile.open) .mobile-call-bar {
+  filter: blur(14px);
 }
 .price-hero {
   display: flex;
