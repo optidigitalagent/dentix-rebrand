@@ -3,25 +3,44 @@
 
 /* ===================== TOKENS ===================== */
 :root {
-  --brand-green: #234936;
-  --brand-green-dark: #142f23;
-  --brand-green-deep: #0d251b;
-  --brand-green-soft: #2c5842;
-  --text-white: #ffffff;
-  --text-muted: rgba(255, 255, 255, 0.92);
-  --text-soft: rgba(255, 255, 255, 0.8);
-  --border-white: rgba(255, 255, 255, 0.22);
-  --border-weak: rgba(255, 255, 255, 0.12);
-  --hover-bg: rgba(255, 255, 255, 0.08);
-  --sunken-bg: rgba(5, 23, 16, 0.34);
-  --line: rgba(255, 255, 255, 0.18);
+  --bg-primary: #fbf7f1;
+  --bg-secondary: #f4ede3;
+  --bg-header: #f6efe6;
+  --surface: #ffffff;
+  --surface-soft: #fdfaf6;
+  --text-primary: #1f1a16;
+  --text-secondary: #6f6258;
+  --text-secondary-strong: #7a6252;
+  --accent: #c49a55;
+  --accent-light: #d0a96a;
+  --accent-deep: #b88a44;
+  --accent-header: #b08a4a;
+  --dark-surface: #15100b;
+  --dark-surface-alt: #1a1108;
+  --on-dark: #fbf7f1;
+  --on-dark-muted: rgba(251, 247, 241, 0.75);
+  --on-dark-soft: rgba(251, 247, 241, 0.5);
+  --border: rgba(196, 154, 85, 0.3);
+  --border-weak: rgba(196, 154, 85, 0.15);
+  --border-strong: rgba(196, 154, 85, 0.5);
+  --hover-bg: rgba(196, 154, 85, 0.1);
+  --sunken-bg: #ffffff;
+  --line: rgba(196, 154, 85, 0.25);
+  --brand-green: var(--bg-primary);
+  --brand-green-dark: var(--bg-secondary);
+  --brand-green-deep: var(--bg-primary);
+  --brand-green-soft: var(--surface-soft);
+  --text-white: var(--text-primary);
+  --text-muted: var(--text-secondary);
+  --text-soft: var(--text-secondary-strong);
+  --border-white: var(--border-strong);
   --ease: cubic-bezier(0.22, 0.72, 0.18, 1);
   --wrap: 1240px;
   --header-height: 84px;
-  --glass-green: rgba(12, 52, 35, 0.62);
-  --glass-green-strong: rgba(9, 41, 28, 0.78);
-  --glass-border: rgba(255, 255, 255, 0.2);
-  --glass-highlight: rgba(255, 255, 255, 0.08);
+  --glass-green: rgba(246, 239, 230, 0.82);
+  --glass-green-strong: rgba(243, 235, 224, 0.94);
+  --glass-border: rgba(196, 154, 85, 0.3);
+  --glass-highlight: rgba(255, 255, 255, 0.6);
 }
 
 * {
@@ -2877,5 +2896,580 @@ body:has(.nav-mobile.open) .mobile-call-bar {
   }
   .nav-mobile-phone {
     margin-top: 6px;
+  }
+}
+
+/* ===================== BELLA DENT COLOR-ONLY REFINEMENT ===================== */
+body {
+  color: var(--text-primary);
+  background:
+    radial-gradient(circle at 82% 12%, rgba(196, 154, 85, 0.08), transparent 32rem),
+    radial-gradient(circle at 12% 58%, rgba(196, 154, 85, 0.05), transparent 38rem),
+    var(--bg-primary);
+}
+body::before,
+.section::before,
+.contact-info-section::before,
+.price-content::before {
+  background-image: radial-gradient(rgba(196, 154, 85, 0.2) 0.65px, transparent 0.65px);
+}
+.eyebrow,
+.sec-kicker {
+  color: var(--text-secondary-strong);
+}
+.sec-kicker::before,
+.hr-teal::before {
+  background: var(--accent);
+}
+.sec-title,
+.svc-body h3,
+.doc h3,
+.price-block-title,
+.price-name,
+.price-cost {
+  color: var(--text-primary);
+}
+.sec-lede,
+.svc-body p,
+.about-list li,
+.doc-role,
+.cert-hint,
+.price-note {
+  color: var(--text-secondary);
+}
+
+.btn {
+  color: var(--text-primary);
+  border-color: var(--accent);
+  background: var(--accent);
+}
+.btn:hover {
+  color: var(--text-primary);
+  border-color: var(--accent-deep);
+  background: var(--accent-deep);
+}
+.btn-ghost {
+  color: var(--text-primary);
+  border-color: var(--accent-header);
+  background: transparent;
+}
+.btn-ghost:hover {
+  color: var(--text-primary);
+  border-color: var(--accent);
+  background: var(--hover-bg);
+}
+.btn::after {
+  background: linear-gradient(115deg, transparent 20%, rgba(255, 255, 255, 0.32), transparent 80%);
+}
+.btn:focus-visible,
+.nav a:focus-visible,
+.nav-burger:focus-visible,
+.back-to-top:focus-visible,
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline-color: var(--accent-deep);
+}
+
+.nav,
+.nav.scrolled {
+  color: var(--text-primary);
+  background: var(--bg-header);
+  border-bottom-color: rgba(176, 138, 74, 0.22);
+  box-shadow: 0 4px 28px rgba(42, 26, 18, 0.1);
+}
+.nav-links a {
+  color: var(--text-primary);
+  text-shadow: none;
+}
+.nav-links a::after {
+  background: var(--accent);
+}
+.nav-cta {
+  color: #2a1a12;
+  border-color: var(--accent-header);
+  background: transparent;
+}
+.nav-cta:hover {
+  color: var(--surface);
+  border-color: var(--accent-header);
+  background: var(--accent-header);
+}
+.nav-burger span {
+  background: var(--text-primary);
+}
+.nav-mobile {
+  color: var(--text-primary);
+  background:
+    radial-gradient(circle at 86% 8%, rgba(196, 154, 85, 0.12), transparent 18rem),
+    rgba(246, 239, 230, 0.96);
+  border-top-color: rgba(196, 154, 85, 0.22);
+}
+.nav-mobile a,
+.nav-mobile-phone,
+.nav-mobile-placeholder {
+  color: var(--text-primary);
+  border-bottom-color: var(--border-weak);
+}
+.nav-mobile .btn {
+  color: var(--text-primary);
+  border-color: var(--accent-header);
+  background: var(--accent);
+}
+
+.hero {
+  color: var(--on-dark);
+  background: var(--dark-surface-alt);
+}
+.hero-overlay {
+  background: linear-gradient(
+    180deg,
+    rgba(21, 16, 11, 0.55) 0%,
+    rgba(31, 26, 22, 0.42) 42%,
+    rgba(21, 16, 11, 0.72) 100%
+  );
+}
+.hero .eyebrow,
+.hero-title,
+.hero-lede,
+.hero .stat-num,
+.hero .stat-lbl {
+  color: var(--on-dark);
+}
+.hero .eyebrow {
+  color: var(--accent-light);
+}
+.hero .stat-div {
+  background: rgba(251, 247, 241, 0.4);
+}
+.hero .btn {
+  color: var(--text-primary);
+  border-color: var(--accent);
+  background: var(--accent);
+}
+.hero .btn:hover {
+  border-color: var(--accent-deep);
+  background: var(--accent-deep);
+}
+.hero .btn-ghost {
+  color: var(--on-dark);
+  border-color: rgba(251, 247, 241, 0.5);
+  background: transparent;
+}
+.hero .btn-ghost:hover {
+  color: var(--accent-light);
+  border-color: var(--accent);
+  background: rgba(196, 154, 85, 0.1);
+}
+
+.trust {
+  color: var(--on-dark);
+  background: var(--dark-surface);
+  border-color: rgba(196, 154, 85, 0.35);
+  box-shadow:
+    inset 0 1px rgba(196, 154, 85, 0.12),
+    inset 0 -1px rgba(196, 154, 85, 0.12);
+}
+.trust-item {
+  border-right-color: rgba(196, 154, 85, 0.2);
+}
+.trust-item svg {
+  stroke: var(--accent);
+}
+.trust-item h3 {
+  color: var(--on-dark);
+}
+
+#services,
+#team,
+.cases,
+.price-content {
+  background:
+    radial-gradient(circle at 86% 18%, rgba(196, 154, 85, 0.08), transparent 30rem),
+    var(--bg-primary);
+}
+.about,
+#certificates,
+.contact-stage,
+.contact-info-section {
+  background:
+    radial-gradient(circle at 16% 34%, rgba(196, 154, 85, 0.07), transparent 28rem),
+    var(--bg-secondary);
+}
+#team {
+  background:
+    linear-gradient(118deg, transparent 0 63%, rgba(196, 154, 85, 0.04) 63% 64%, transparent 64%),
+    radial-gradient(circle at 82% 30%, rgba(196, 154, 85, 0.07), transparent 26rem),
+    var(--bg-primary);
+}
+
+.svc-card,
+.doc,
+.cert-card,
+.treatment-card,
+.service-summary,
+.price-block,
+.info-block {
+  color: var(--text-primary);
+  background: var(--surface);
+  border-color: rgba(196, 154, 85, 0.25);
+  box-shadow:
+    0 18px 50px rgba(31, 26, 22, 0.07),
+    inset 0 1px rgba(255, 255, 255, 0.7);
+}
+.svc-card:hover,
+.doc:hover,
+.treatment-card:hover,
+.price-block:hover {
+  color: var(--text-primary);
+  border-color: rgba(196, 154, 85, 0.5);
+  background: var(--surface);
+  box-shadow:
+    0 26px 64px rgba(31, 26, 22, 0.12),
+    inset 0 1px rgba(255, 255, 255, 0.8);
+}
+.svc-card::after,
+.svc-link,
+.svc-ico,
+.doc-role,
+.cert-hint {
+  color: var(--text-secondary);
+}
+.svc-ico {
+  border-color: rgba(196, 154, 85, 0.3);
+}
+.svc-ico svg {
+  color: var(--accent-deep);
+}
+.svc-link,
+.price-service-link {
+  color: var(--text-secondary-strong);
+}
+.svc-link .arw {
+  color: var(--accent-deep);
+}
+.svc-link {
+  border-top-color: rgba(196, 154, 85, 0.2);
+}
+.hr-teal,
+.steps-list,
+.steps-list li,
+.faq-list,
+.faq-item {
+  border-color: rgba(196, 154, 85, 0.2);
+  background-color: transparent;
+}
+.gallery-nav,
+.gallery-dots button,
+.cert-arrows button {
+  color: var(--on-dark);
+  border-color: rgba(196, 154, 85, 0.5);
+}
+.cert-arrows button {
+  color: var(--accent-deep);
+}
+.gallery-nav {
+  background: rgba(21, 16, 11, 0.4);
+}
+.gallery-nav:hover,
+.cert-arrows button:hover {
+  color: var(--text-primary);
+  background: var(--accent);
+}
+.gallery-dots button {
+  background: rgba(251, 247, 241, 0.55);
+}
+.gallery-dots button.is-active {
+  background: var(--accent);
+}
+.about-list .tick {
+  border-color: var(--accent);
+}
+.about-list .tick::after {
+  border-color: var(--accent-deep);
+}
+.case-card {
+  background: var(--surface);
+  border-color: rgba(196, 154, 85, 0.25);
+}
+.case-shot + .case-shot {
+  border-left-color: rgba(196, 154, 85, 0.25);
+}
+.case-shot::after {
+  background: linear-gradient(0deg, rgba(21, 16, 11, 0.72), transparent);
+}
+.case-shot figcaption span,
+.case-ribbon {
+  color: var(--on-dark);
+  background: rgba(21, 16, 11, 0.68);
+}
+
+.contact-stage {
+  color: var(--text-primary);
+}
+.contact-stage::after {
+  border-color: rgba(196, 154, 85, 0.18);
+  box-shadow:
+    0 0 0 5rem rgba(196, 154, 85, 0.025),
+    0 0 0 10rem rgba(196, 154, 85, 0.018);
+}
+.contact-rail,
+.contact-panel {
+  color: var(--text-primary);
+  border-color: rgba(196, 154, 85, 0.3);
+  background: var(--surface);
+  box-shadow:
+    0 28px 80px rgba(31, 26, 22, 0.1),
+    inset 0 1px rgba(255, 255, 255, 0.8);
+}
+.contact-rail-index,
+.contact-rail-kicker,
+.contact-panel-kicker,
+.contact-rail h3,
+.contact-panel h3,
+.contact-rail-copy,
+.contact-slot span,
+.contact-slot strong,
+.contact-data-state,
+.field > span,
+.contact-panel .booking-note {
+  color: var(--text-primary);
+}
+.contact-rail-kicker,
+.contact-panel-kicker,
+.contact-rail-index,
+.contact-data-state {
+  color: var(--text-secondary-strong);
+}
+.contact-slot {
+  color: var(--text-primary);
+  border-color: rgba(196, 154, 85, 0.22);
+  background: var(--surface-soft);
+}
+.contact-slot:hover {
+  border-color: rgba(196, 154, 85, 0.5);
+  background: var(--bg-secondary);
+}
+.contact-state-dot {
+  background: var(--accent);
+  box-shadow: 0 0 0 5px rgba(196, 154, 85, 0.15);
+}
+.contact-panel-status {
+  color: var(--text-secondary-strong);
+  border-color: rgba(196, 154, 85, 0.3);
+  background: var(--bg-secondary);
+}
+.field input,
+.field select,
+.field textarea,
+.field input:disabled,
+.field select:disabled,
+.field textarea:disabled {
+  color: var(--text-primary);
+  border-color: rgba(196, 154, 85, 0.3);
+  background: var(--bg-primary);
+}
+.field input::placeholder,
+.field textarea::placeholder {
+  color: var(--text-secondary);
+}
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  border-color: var(--accent-deep);
+}
+.field select option {
+  color: var(--text-primary);
+  background: var(--surface);
+}
+.contact-panel .btn:disabled {
+  color: var(--text-primary);
+  border-color: var(--accent);
+  background: var(--accent);
+}
+
+.contact-info-section {
+  color: var(--text-primary);
+  border-top-color: rgba(196, 154, 85, 0.2);
+}
+.info-block h3 {
+  color: var(--text-secondary-strong);
+}
+.info-block p {
+  color: var(--text-primary);
+}
+.contact-map {
+  border-color: rgba(196, 154, 85, 0.3);
+  background: var(--surface);
+}
+.map-placeholder-panel {
+  color: var(--text-primary);
+  background:
+    linear-gradient(180deg, transparent 0%, rgba(244, 237, 227, 0.88) 100%),
+    linear-gradient(rgba(196, 154, 85, 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(196, 154, 85, 0.12) 1px, transparent 1px),
+    radial-gradient(circle at 72% 28%, rgba(196, 154, 85, 0.18), transparent 17rem);
+}
+.map-placeholder-panel::before,
+.map-placeholder-panel::after {
+  border-color: rgba(196, 154, 85, 0.35);
+}
+.map-placeholder-panel::after {
+  background: var(--accent);
+  box-shadow: 0 0 0 10px rgba(196, 154, 85, 0.14);
+}
+.map-placeholder-panel h3,
+.map-placeholder-panel p,
+.map-coordinate,
+.map-link {
+  color: var(--text-primary);
+}
+.map-link {
+  border-top-color: rgba(196, 154, 85, 0.2);
+}
+.map-link:hover {
+  background: var(--hover-bg);
+}
+
+.footer {
+  color: var(--on-dark-muted);
+  background: var(--dark-surface);
+  border-top-color: rgba(196, 154, 85, 0.35);
+}
+.footer-top,
+.footer-mini {
+  border-color: rgba(196, 154, 85, 0.18);
+}
+.footer-tagline,
+.footer-contact-item,
+.footer-links a,
+.footer-copy {
+  color: var(--on-dark-muted);
+}
+.footer-ico {
+  color: var(--accent);
+  border-color: rgba(196, 154, 85, 0.28);
+  background: rgba(196, 154, 85, 0.08);
+}
+.footer-ico svg {
+  color: var(--accent);
+}
+.footer-contact-item:hover .footer-ico {
+  background: rgba(196, 154, 85, 0.16);
+}
+.footer-contact-item a:hover,
+.footer-links a:hover {
+  color: var(--accent-light);
+}
+.footer-links a::after {
+  background: var(--accent);
+}
+
+.price-hero {
+  color: var(--on-dark);
+  background-color: var(--dark-surface);
+  background-image:
+    linear-gradient(90deg, rgba(21, 16, 11, 0.94) 0%, rgba(31, 26, 22, 0.82) 43%, rgba(31, 26, 22, 0.52) 72%, rgba(21, 16, 11, 0.64) 100%),
+    linear-gradient(180deg, rgba(31, 26, 22, 0.22), rgba(21, 16, 11, 0.58)),
+    var(--price-hero-image);
+}
+.price-hero::before {
+  background-image: radial-gradient(rgba(196, 154, 85, 0.38) 0.7px, transparent 0.7px);
+}
+.price-hero .breadcrumbs,
+.price-hero .hero-title,
+.price-hero .service-intro,
+.price-hero .eyebrow {
+  color: var(--on-dark);
+}
+.price-hero .eyebrow {
+  color: var(--accent-light);
+}
+.price-hero .btn {
+  color: var(--text-primary);
+  border-color: var(--accent);
+  background: var(--accent);
+}
+.price-hero .btn-ghost {
+  color: var(--on-dark);
+  border-color: rgba(251, 247, 241, 0.5);
+  background: transparent;
+}
+.price-quick-shell {
+  border-color: rgba(196, 154, 85, 0.3);
+  background: rgba(246, 239, 230, 0.94);
+  box-shadow:
+    0 18px 48px rgba(31, 26, 22, 0.1),
+    inset 0 1px rgba(255, 255, 255, 0.65);
+}
+.price-quick a {
+  color: var(--text-primary);
+  border-color: rgba(196, 154, 85, 0.4);
+  background: var(--surface);
+}
+.price-quick a:hover,
+.price-quick a:focus-visible,
+.price-quick a.active {
+  color: var(--text-primary);
+  border-color: var(--accent-deep);
+  background: var(--accent);
+}
+.price-quick a:focus-visible {
+  outline-color: var(--accent-deep);
+}
+.price-list {
+  color: var(--text-primary);
+}
+.price-block-num {
+  color: var(--text-secondary-strong);
+}
+.price-row {
+  border-bottom-color: rgba(196, 154, 85, 0.2);
+}
+.price-row:hover {
+  background: rgba(196, 154, 85, 0.08);
+}
+.price-cost {
+  border-color: rgba(196, 154, 85, 0.45);
+  background: var(--surface-soft);
+}
+.back-to-top {
+  color: var(--text-primary);
+  border-color: rgba(196, 154, 85, 0.5);
+  background: var(--accent);
+  box-shadow:
+    0 16px 44px rgba(31, 26, 22, 0.14),
+    inset 0 1px rgba(255, 255, 255, 0.4);
+}
+.back-to-top:hover {
+  color: var(--text-primary);
+  background: var(--accent-deep);
+}
+.mobile-call-bar {
+  color: var(--text-primary);
+  border-color: var(--accent-deep);
+  background: var(--accent);
+}
+
+.lightbox {
+  background: rgba(21, 16, 11, 0.94);
+}
+.lightbox-close,
+.lightbox-nav {
+  color: var(--on-dark);
+  border-color: rgba(196, 154, 85, 0.5);
+  background: rgba(196, 154, 85, 0.12);
+}
+.lightbox-close:hover,
+.lightbox-nav:hover {
+  background: rgba(196, 154, 85, 0.28);
+}
+
+@media (max-width: 767px) {
+  .price-hero {
+    background-image:
+      linear-gradient(90deg, rgba(21, 16, 11, 0.92), rgba(31, 26, 22, 0.68)),
+      linear-gradient(180deg, rgba(31, 26, 22, 0.26), rgba(21, 16, 11, 0.62)),
+      var(--price-hero-image);
   }
 }
