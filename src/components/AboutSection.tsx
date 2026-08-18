@@ -81,9 +81,7 @@ export function AboutSection() {
           <ul className="about-list">
             {bullets.map((b) => (
               <li key={b}>
-                <span className="tick" aria-hidden="true">
-                  ✓
-                </span>
+                <span className="tick" aria-hidden="true" />
                 {b}
               </li>
             ))}
