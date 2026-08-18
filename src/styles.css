@@ -11,38 +11,10 @@
   --text-primary: #000000;
   --text-secondary: #6f6258;
   --text-secondary-strong: #7a6252;
-  --accent: #b98227;
-  --accent-light: #f1d58b;
-  --accent-deep: #7c4e0c;
-  --accent-header: #9e6818;
-  --gold-metallic: linear-gradient(
-    112deg,
-    #70430a 0%,
-    #a96f18 16%,
-    #d7aa45 35%,
-    #fff0ad 49%,
-    #c58a25 64%,
-    #83500d 82%,
-    #d0a13b 100%
-  );
-  --gold-metallic-hover: linear-gradient(
-    112deg,
-    #5f3705 0%,
-    #a86b12 17%,
-    #e1b84f 38%,
-    #fff5c7 50%,
-    #bd7c19 66%,
-    #704108 84%,
-    #d9ae47 100%
-  );
-  --gold-text-metallic: linear-gradient(
-    100deg,
-    #6e430a 0%,
-    #9d6514 30%,
-    #c89632 48%,
-    #83510c 67%,
-    #b47a1d 100%
-  );
+  --accent: #be924d;
+  --accent-light: #be924d;
+  --accent-deep: #be924d;
+  --accent-header: #be924d;
   --dark-surface: #15100b;
   --dark-surface-alt: #1a1108;
   --on-dark: #fbf7f1;
@@ -3493,61 +3465,15 @@ body::before,
   background: rgba(196, 154, 85, 0.28);
 }
 
-/* ===================== METALLIC GOLD REFINEMENT ===================== */
-@keyframes gold-sheen {
-  0%,
-  100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-}
-
+/* ===================== FLAT GOLD REFINEMENT ===================== */
 .sec-kicker,
 .eyebrow {
-  color: var(--accent-deep);
-  background-image: var(--gold-text-metallic);
-  background-size: 220% 100%;
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: gold-sheen 7s ease-in-out infinite;
+  color: var(--accent);
 }
 
 .sec-kicker::before,
 .hr-teal::before {
-  background-color: var(--accent);
-  background-image: var(--gold-metallic);
-  background-size: 220% 100%;
-  animation: gold-sheen 7s ease-in-out infinite;
-}
-
-.btn:not(.btn-ghost):not(.nav-cta),
-.nav-cta:hover,
-.gallery-nav:hover,
-.cert-arrows button:hover,
-.gallery-dots button.is-active,
-.price-quick a:hover,
-.price-quick a:focus-visible,
-.price-quick a.active,
-.back-to-top,
-.mobile-call-bar,
-.contact-state-dot,
-.map-placeholder-panel::after {
-  background-color: var(--accent);
-  background-image: var(--gold-metallic);
-  background-size: 220% 100%;
-  animation: gold-sheen 6.5s ease-in-out infinite;
-}
-
-.btn:not(.btn-ghost):not(.nav-cta):hover,
-.nav-cta:hover,
-.back-to-top:hover {
-  background-image: var(--gold-metallic-hover);
-  box-shadow:
-    0 12px 30px rgba(124, 78, 12, 0.22),
-    inset 0 1px rgba(255, 245, 199, 0.62);
+  background: var(--accent);
 }
 
 .about-list .tick::after {
@@ -3556,27 +3482,6 @@ body::before,
 
 .info-block h3 {
   color: var(--text-primary);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .sec-kicker,
-  .eyebrow,
-  .sec-kicker::before,
-  .hr-teal::before,
-  .btn:not(.btn-ghost):not(.nav-cta),
-  .nav-cta:hover,
-  .gallery-nav:hover,
-  .cert-arrows button:hover,
-  .gallery-dots button.is-active,
-  .price-quick a:hover,
-  .price-quick a:focus-visible,
-  .price-quick a.active,
-  .back-to-top,
-  .mobile-call-bar,
-  .contact-state-dot,
-  .map-placeholder-panel::after {
-    animation: none;
-  }
 }
 
 @media (max-width: 767px) {
