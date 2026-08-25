@@ -1,6 +1,7 @@
 import { Brand } from "./Brand";
 import { site } from "@/data/site";
 import { siteHref } from "@/lib/site-href";
+import { BookingButton } from "./booking/BookingContext";
 
 export function Footer() {
   return (
@@ -12,6 +13,7 @@ export function Footer() {
             Стоматологія повного циклу DENTIX: лікування, ортодонтія, імплантація та відновлення
             усмішки.
           </p>
+          <BookingButton className="footer-booking">Записатися онлайн</BookingButton>
         </div>
         <div className="footer-contact">
           <div className="footer-contact-item">

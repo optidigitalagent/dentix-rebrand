@@ -1,6 +1,7 @@
 import { doctors } from "@/data/doctors";
 import { Reveal } from "./Reveal";
 import { SectionHeading } from "./SectionHeading";
+import { BookingButton } from "./booking/BookingContext";
 
 export function TeamSection() {
   return (
@@ -19,6 +20,9 @@ export function TeamSection() {
               </div>
               <h3>{d.name}</h3>
               <p className="doc-role">{d.role}</p>
+              <BookingButton className="doc-booking" doctorId={import.meta.env.DEV ? `demo-doctor-${i === 0 ? "a" : "b"}` : undefined}>
+                Обрати лікаря
+              </BookingButton>
             </Reveal>
           ))}
         </div>

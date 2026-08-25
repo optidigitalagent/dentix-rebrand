@@ -3,9 +3,10 @@ import { useRouterState } from "@tanstack/react-router";
 import { Brand } from "./Brand";
 import { site } from "@/data/site";
 import { siteHref } from "@/lib/site-href";
+import { BookingButton } from "./booking/BookingContext";
 
 export function Header() {
-  const pathname = useRouterState({ select: (state) => state.location.pathname });
+  const pathname = useRouterState({ select: (state: { location: { pathname: string } }) => state.location.pathname });
   const isPricePage = pathname.endsWith("/price.html");
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
@@ -81,9 +82,7 @@ export function Header() {
             </a>
           ))}
         </nav>
-        <a className="btn nav-cta" href={siteHref("/#contact")}>
-          Записатися
-        </a>
+        <BookingButton className="btn nav-cta">Записатися онлайн</BookingButton>
         <button
           ref={menuButtonRef}
           className={`nav-burger${open ? " open" : ""}`}
@@ -116,9 +115,7 @@ export function Header() {
             {item.label}
           </a>
         ))}
-        <a className="btn" href={siteHref("/#contact")} onClick={() => setOpen(false)}>
-          Записатися
-        </a>
+        <BookingButton className="btn" onClick={() => setOpen(false)}>Записатися онлайн</BookingButton>
         {site.contactDataReady ? (
           <a className="nav-mobile-phone" href={site.phonePrimaryHref}>
             {site.phonePrimary}

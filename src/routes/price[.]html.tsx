@@ -8,6 +8,7 @@ import { priceBlocks } from "@/data/prices";
 import { site } from "@/data/site";
 import priceHeroImg from "@/assets/about-2.jpg";
 import { siteHref } from "@/lib/site-href";
+import { BookingButton } from "@/components/booking/BookingContext";
 
 const title = "Ціни на стоматологічні послуги — DENTIX";
 const description =
@@ -56,9 +57,7 @@ function PricePage() {
                   Контактні дані готуються
                 </a>
               )}
-              <a className="btn btn-ghost" href={siteHref("/#contact")}>
-                Перейти до запису <span aria-hidden="true">→</span>
-              </a>
+              <BookingButton className="btn btn-ghost">Записатися онлайн <span aria-hidden="true">→</span></BookingButton>
             </div>
           </div>
         </div>
@@ -98,6 +97,14 @@ function PricePage() {
                 <a className="price-service-link" href={siteHref(b.link.href)}>
                   {b.link.label}
                 </a>
+              ) : null}
+              {(["profilaktyka", "terapiya", "ortodontiya"] as string[]).includes(b.id) ? (
+                <BookingButton
+                  className="price-booking-link"
+                  serviceId={import.meta.env.DEV ? ({ profilaktyka: "demo-hygiene", terapiya: "demo-therapy", ortodontiya: "demo-ortho" } as Record<string, string>)[b.id] : undefined}
+                >
+                  Записатися за напрямком
+                </BookingButton>
               ) : null}
             </Reveal>
           ))}

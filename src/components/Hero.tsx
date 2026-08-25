@@ -2,6 +2,7 @@ import heroImg from "@/assets/hero.jpg";
 import { site } from "@/data/site";
 import { Reveal } from "./Reveal";
 import { StatsRow } from "./StatsRow";
+import { BookingButton } from "./booking/BookingContext";
 
 export function Hero() {
   return (
@@ -24,9 +25,7 @@ export function Hero() {
             планом.
           </Reveal>
           <Reveal className="hero-actions" delay={140}>
-            <a className="btn" href="#contact">
-              Записатися на прийом
-            </a>
+            <BookingButton className="btn">Записатися онлайн</BookingButton>
             <a className="btn btn-ghost" href="#services">
               Наші послуги <span aria-hidden="true">→</span>
             </a>

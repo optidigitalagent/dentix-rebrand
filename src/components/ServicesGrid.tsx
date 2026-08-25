@@ -2,6 +2,13 @@ import { services } from "@/data/services";
 import { Reveal } from "./Reveal";
 import { SectionHeading } from "./SectionHeading";
 import { siteHref } from "@/lib/site-href";
+import { BookingButton } from "./booking/BookingContext";
+
+const demoBookingMap: Record<string, string> = {
+  "Профілактика": "demo-hygiene",
+  "Терапія": "demo-therapy",
+  "Ортодонтія": "demo-ortho",
+};
 
 export function ServicesGrid() {
   return (
@@ -23,6 +30,11 @@ export function ServicesGrid() {
               <a className="svc-link" href={siteHref(s.href)}>
                 {s.linkLabel} <span aria-hidden="true">→</span>
               </a>
+              {demoBookingMap[s.title] ? (
+                <BookingButton className="svc-booking-link" serviceId={import.meta.env.DEV ? demoBookingMap[s.title] : undefined}>
+                  Записатися онлайн
+                </BookingButton>
+              ) : null}
             </Reveal>
           ))}
         </div>

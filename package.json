@@ -9,7 +9,11 @@
     "build:dev": "vite build --mode development",
     "build:pages": "vite build --config vite.pages.config.ts",
     "preview": "vite preview",
+    "test": "npm run test:public",
+    "test:public": "node --experimental-strip-types --test tests/*.test.ts",
+    "test:browser": "node tests/browser-qa.mjs",
     "lint": "eslint .",
+    "lint:phase2": "eslint src/components/booking src/lib/booking-client.ts src/lib/booking-config.ts src/lib/booking-types.ts src/lib/booking-validation.ts tests --rule prettier/prettier:off",
     "format": "prettier --write ."
   },
   "dependencies": {

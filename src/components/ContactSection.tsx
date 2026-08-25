@@ -1,6 +1,7 @@
 import { site } from "@/data/site";
 import { Reveal } from "./Reveal";
 import { SectionHeading } from "./SectionHeading";
+import { BookingButton } from "./booking/BookingContext";
 
 const contactSlots = [
   { label: "Телефон", value: site.phonePrimary },
@@ -50,66 +51,17 @@ export function ContactSection() {
           <Reveal as="div" className="contact-panel" delay={90}>
             <div className="contact-panel-head">
               <div>
-                <p className="contact-panel-kicker">Форма запису</p>
-                <h3>Залишити заявку</h3>
+                <p className="contact-panel-kicker">Calm Booking Assistant</p>
+                <h3>Записатися онлайн</h3>
               </div>
-              <span className="contact-panel-status">Попередній перегляд</span>
+              <span className="contact-panel-status">6 коротких кроків</span>
             </div>
-
-            <form
-              className="form"
-              onSubmit={(event) => event.preventDefault()}
-              aria-describedby="booking-preview-note"
-            >
-              <div className="form-row">
-                <label className="field">
-                  <span>Ім’я</span>
-                  <input
-                    type="text"
-                    name="name"
-                    placeholder="Ваше ім’я"
-                    disabled={!site.bookingFormReady}
-                  />
-                </label>
-                <label className="field">
-                  <span>Телефон</span>
-                  <input
-                    type="tel"
-                    name="phone"
-                    placeholder="+380 __ ___ __ __"
-                    disabled={!site.bookingFormReady}
-                  />
-                </label>
-              </div>
-              <label className="field">
-                <span>Напрямок</span>
-                <select name="topic" defaultValue="Консультація" disabled={!site.bookingFormReady}>
-                  <option>Консультація</option>
-                  <option>Профілактика</option>
-                  <option>Терапія</option>
-                  <option>Пародонтологія</option>
-                  <option>Ортодонтія</option>
-                  <option>Ортопедія</option>
-                  <option>Хірургія</option>
-                </select>
-              </label>
-              <label className="field">
-                <span>Коментар</span>
-                <textarea
-                  name="message"
-                  rows={4}
-                  placeholder="Зручний час для дзвінка"
-                  disabled={!site.bookingFormReady}
-                />
-              </label>
-              <button className="btn btn-block" type="submit" disabled={!site.bookingFormReady}>
-                Форма буде доступна після підключення
-              </button>
-              <p className="booking-note" id="booking-preview-note">
-                Відправлення вимкнене, доки не підключено реальний канал доставки заявок. Форма не
-                показує фальшивий success state.
-              </p>
-            </form>
+            <div className="contact-booking-launch">
+              <p>Оберіть послугу, лікаря та реальний доступний час. Ім’я й телефон запитуються лише перед перевіркою запису.</p>
+              <ul><li>Без медичних документів</li><li>Час перевіряється повторно на submit</li><li>Підтвердження тільки після відповіді API</li></ul>
+              <BookingButton className="btn btn-block">Записатися онлайн</BookingButton>
+              <p className="booking-note">У development preview використовуються лише явно позначені DEMO-дані.</p>
+            </div>
           </Reveal>
         </div>
       </div>

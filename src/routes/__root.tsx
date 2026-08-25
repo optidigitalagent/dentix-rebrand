@@ -77,14 +77,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "DENTIX — стоматологія та онлайн-запис" },
+      { name: "description", content: "DENTIX: стоматологічні послуги та спокійний онлайн-запис у кілька кроків." },
+      { name: "author", content: "DENTIX" },
+      { property: "og:title", content: "DENTIX — записатися онлайн" },
+      { property: "og:description", content: "Оберіть послугу, лікаря та доступний час у DENTIX." },
       { property: "og:type", content: "website" },
+      { property: "og:image", content: "https://optidigitalagent.github.io/dentix-rebrand/dentix-og-social.png" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:image", content: "https://optidigitalagent.github.io/dentix-rebrand/dentix-og-social.png" },
     ],
     links: [
       {
@@ -101,6 +102,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 });
 
 function RootShell({ children }: { children: ReactNode }) {
+  // The GitHub Pages entry mounts RouterProvider into #root and already owns the document shell.
+  // TanStack Start SSR still receives the full html/head/body shell below.
+  if (typeof document !== "undefined" && document.getElementById("root")) return <>{children}</>;
   return (
     <html lang="uk">
       <head>
