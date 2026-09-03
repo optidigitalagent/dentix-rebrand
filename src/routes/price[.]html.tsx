@@ -4,7 +4,7 @@ import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
 import { ContactSection } from "@/components/ContactSection";
 import { BackToTopButton } from "@/components/BackToTopButton";
-import { priceBlocks } from "@/data/prices";
+import { useManagedContent } from "@/hooks/use-managed-content";
 import { site } from "@/data/site";
 import priceHeroImg from "@/assets/about-2.jpg";
 import { siteHref } from "@/lib/site-href";
@@ -12,7 +12,7 @@ import { BookingButton } from "@/components/booking/BookingContext";
 
 const title = "Ціни на стоматологічні послуги — DENTIX";
 const description =
-  "Структура прайсу DENTIX: профілактика, пародонтологія, терапія, ортодонтія, ортопедія та хірургія. Непідтверджені ціни чесно позначені як чернетка даних.";
+  "Прайс DENTIX: послуги за напрямками профілактики, пародонтології, терапії, ортодонтії, ортопедії та хірургії.";
 
 export const Route = createFileRoute("/price.html")({
   head: () => ({
@@ -29,6 +29,8 @@ export const Route = createFileRoute("/price.html")({
 });
 
 function PricePage() {
+  const { priceBlocks, priceSource } = useManagedContent();
+
   return (
     <SiteLayout>
       <section
@@ -44,8 +46,8 @@ function PricePage() {
             <p className="eyebrow">Прайс клініки</p>
             <h1 className="hero-title">Ціни DENTIX</h1>
             <p className="service-intro">
-              Структура прайсу готова до наповнення. Поки вартість не підтверджена клінікою, кожна
-              позиція чесно позначена як чернетка даних.
+              Послуги згруповано за напрямками. Остаточну вартість і склад індивідуального плану
+              підтверджує клініка.
             </p>
             <div className="hero-actions">
               {site.contactDataReady ? (
@@ -63,7 +65,7 @@ function PricePage() {
         </div>
       </section>
 
-      <div className="wrap price-content">
+      <div className="wrap price-content" data-content-source={priceSource}>
         <div className="price-quick-shell">
           <nav className="price-quick" aria-label="Категорії прайсу">
             {priceBlocks.map((b) => (
@@ -86,8 +88,11 @@ function PricePage() {
               </div>
               <ul>
                 {b.rows.map((r) => (
-                  <li className="price-row" key={r.name}>
-                    <span className="price-name">{r.name}</span>
+                  <li className="price-row" key={`${r.name}-${r.cost}`}>
+                    <span className="price-name-wrap">
+                      <span className="price-name">{r.name}</span>
+                      {r.note ? <small className="price-row-note">{r.note}</small> : null}
+                    </span>
                     <span className="price-cost">{r.cost}</span>
                   </li>
                 ))}
