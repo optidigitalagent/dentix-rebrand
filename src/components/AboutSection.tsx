@@ -1,28 +1,21 @@
 import { useEffect, useState } from "react";
-import about1 from "@/assets/about-1.jpg";
-import about2 from "@/assets/about-2.jpg";
-import about3 from "@/assets/about-3.jpg";
+import { aboutSlides } from "@/data/about";
 import { Reveal } from "./Reveal";
 import { siteHref } from "@/lib/site-href";
-
-const slides = [
-  { src: about1, alt: "Інтер'єр клініки DENTIX" },
-  { src: about2, alt: "Стоматологічний кабінет DENTIX" },
-  { src: about3, alt: "Зона очікування клініки DENTIX" },
-];
 
 const bullets = [
   "Прийом за попереднім записом телефоном",
   "Основні напрямки лікування в одній клініці",
   "Відкритий прайс на сайті",
   "Індивідуальний план після діагностики",
+  "Лікування дітей наразі не проводимо",
 ];
 
 export function AboutSection() {
   const [i, setI] = useState(0);
 
   useEffect(() => {
-    const t = setInterval(() => setI((v) => (v + 1) % slides.length), 5000);
+    const t = setInterval(() => setI((v) => (v + 1) % aboutSlides.length), 5000);
     return () => clearInterval(t);
   }, []);
 
@@ -31,35 +24,38 @@ export function AboutSection() {
       <div className="wrap about-grid">
         <Reveal className="about-media">
           <div className="about-gallery">
-            {slides.map((s, idx) => (
+            {aboutSlides.map((slide, idx) => (
               <img
-                key={s.src}
+                key={slide.id}
                 className={`about-slide${idx === i ? " is-active" : ""}`}
-                src={s.src}
-                alt={s.alt}
-                loading="lazy"
+                src={slide.src}
+                alt={slide.alt}
+                loading={idx < 2 ? "eager" : "lazy"}
+                decoding="async"
+                style={{ objectPosition: slide.objectPosition }}
               />
             ))}
             <button
               className="gallery-nav prev"
               aria-label="Попереднє фото"
-              onClick={() => setI((v) => (v - 1 + slides.length) % slides.length)}
+              onClick={() => setI((v) => (v - 1 + aboutSlides.length) % aboutSlides.length)}
             >
               ‹
             </button>
             <button
               className="gallery-nav next"
               aria-label="Наступне фото"
-              onClick={() => setI((v) => (v + 1) % slides.length)}
+              onClick={() => setI((v) => (v + 1) % aboutSlides.length)}
             >
               ›
             </button>
             <div className="gallery-dots">
-              {slides.map((s, idx) => (
+              {aboutSlides.map((slide, idx) => (
                 <button
-                  key={s.src}
+                  key={slide.id}
                   className={idx === i ? "is-active" : ""}
                   aria-label={`Фото ${idx + 1}`}
+                  aria-current={idx === i ? "true" : undefined}
                   onClick={() => setI(idx)}
                 />
               ))}
@@ -77,6 +73,11 @@ export function AboutSection() {
           <p className="sec-lede">
             План лікування складають після огляду й діагностики, а вартість основних послуг
             опублікована у відкритому прайсі.
+          </p>
+          <p className="sec-lede">
+            DENTIX підтримує роботу під час відключень електроенергії завдяки резервному живленню —
+            інверторам і генераторам. У клініці доступна седація. DENTIX також приймає пацієнтів із
+            гострим болем.
           </p>
           <ul className="about-list">
             {bullets.map((b) => (

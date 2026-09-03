@@ -7,6 +7,7 @@ import { AboutSection } from "@/components/AboutSection";
 import { TeamSection } from "@/components/TeamSection";
 import { CertificatesSection } from "@/components/CertificatesSection";
 import { CasesSection } from "@/components/CasesSection";
+import { ReviewsSection } from "@/components/ReviewsSection";
 import { ContactSection } from "@/components/ContactSection";
 import { ContactInfoSection } from "@/components/ContactInfoSection";
 
@@ -38,6 +39,7 @@ function Index() {
       <TeamSection />
       <CertificatesSection />
       <CasesSection />
+      <ReviewsSection />
       <ContactSection />
       <ContactInfoSection />
     </SiteLayout>

@@ -31,13 +31,13 @@ export function CertificatesSection() {
         <SectionHeading
           kicker="Сертифікати"
           title="Навчання та кваліфікація"
-          lede="Демонстраційні сертифікати — замініть реальними документами лікарів DENTIX."
+          lede="Сертифікати та професійне навчання команди DENTIX."
         />
         <div className="cert-wrap">
           <div className="cert-track" ref={trackRef}>
             {certificates.map((c, i) => (
               <button
-                key={i}
+                key={c.id}
                 className="cert-card"
                 onClick={() => setOpen(i)}
                 aria-label={`Відкрити ${c.alt}`}
