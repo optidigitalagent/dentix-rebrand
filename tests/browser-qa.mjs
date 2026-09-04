@@ -18,12 +18,17 @@ try {
     await page.goto(`${origin}/`, { waitUntil: "domcontentloaded", timeout: 60_000 });
     await page.waitForTimeout(500);
     await assertNoOverflow(page, `patient-${width}`);
-    await page.locator(".hero-actions button").click();
-    await page.getByRole("dialog", { name: /Послуга/ }).waitFor();
-    await page.getByText(/Онлайн-запис ще не підключено/).waitFor();
+    await page.getByRole("heading", { name: "Лікарі DENTIX" }).waitFor();
+    const lead = page.locator(".lead-form");
+    await lead.scrollIntoViewIfNeeded();
+    await page.getByLabel("Ім’я *").waitFor();
+    assert.equal(await page.getByLabel("Бажаний спосіб зв’язку *").locator("option").count(), 4);
+    assert.equal(await page.getByRole("button", { name: "Залишити заявку" }).isDisabled(), true);
+    assert.equal(await page.getByText(/Дякуємо! Адміністратор DENTIX/).count(), 0, "success must not be shown before durable API response");
+    assert.equal(await page.locator(".booking-confirmation").count(), 0, "full booking must not be active");
     assert.equal(await page.getByText(/DEVELOPMENT TEST/).count(), 0);
-    await assertNoOverflow(page, `patient-drawer-${width}`);
-    console.log(`patient disabled-state ${width}: PASS`);
+    await assertNoOverflow(page, `patient-lead-form-${width}`);
+    console.log(`patient leads + disabled-booking ${width}: PASS`);
     await page.close();
   }
 } finally {
