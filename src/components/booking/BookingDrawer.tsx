@@ -21,12 +21,14 @@ export function BookingDrawer() {
   const [serviceId, setServiceId] = useState("");
   const [doctorId, setDoctorId] = useState("");
   const [startsAt, setStartsAt] = useState("");
+  const [selectedDate, setSelectedDate] = useState("");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [consent, setConsent] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [confirmation, setConfirmation] = useState<BookingConfirmation | null>(null);
+  const idempotencyRef = useRef(crypto.randomUUID());
 
   useEffect(() => {
     if (!isOpen) return;
@@ -36,6 +38,8 @@ export function BookingDrawer() {
     setServiceId(seed.serviceId ?? "");
     setDoctorId(seed.doctorId ?? "");
     setStartsAt("");
+    setSelectedDate("");
+    idempotencyRef.current = crypto.randomUUID();
     setConfirmation(null);
     setError("");
     setLoading(true);
@@ -72,18 +76,22 @@ export function BookingDrawer() {
   }, [closeBooking, isOpen, seed.doctorId, seed.serviceId]);
 
   useEffect(() => {
-    if (!serviceId || !doctorId || !isOpen) return;
+    if (!serviceId || !doctorId || !selectedDate || !isOpen) return;
     setLoading(true);
     setAvailability([]);
     setStartsAt("");
     bookingClient
-      .getAvailability(serviceId, doctorId)
+      .getAvailability(serviceId, doctorId, selectedDate)
       .then(setAvailability)
       .catch((reason: unknown) =>
         setError(reason instanceof Error ? reason.message : "Не вдалося завантажити час."),
       )
       .finally(() => setLoading(false));
-  }, [doctorId, isOpen, serviceId]);
+    const refresh = () => bookingClient.getAvailability(serviceId, doctorId, selectedDate).then(setAvailability).catch(() => undefined);
+    const timer = window.setInterval(refresh, 30_000);
+    window.addEventListener("focus", refresh);
+    return () => { window.clearInterval(timer); window.removeEventListener("focus", refresh); };
+  }, [doctorId, isOpen, selectedDate, serviceId]);
 
   const doctors = useMemo(
     () => catalog?.doctors.filter((doctor) => !serviceId || doctor.serviceIds.includes(serviceId)) ?? [],
@@ -112,10 +120,15 @@ export function BookingDrawer() {
         name: name.trim(),
         phone: phone.trim(),
         consent: true,
-        idempotencyKey: crypto.randomUUID(),
+        idempotencyKey: idempotencyRef.current,
+        testSubmission: catalog?.testOnly ?? false,
       });
       setConfirmation(result);
     } catch (reason) {
+      if (reason instanceof Error && "code" in reason && (reason as { code?: string }).code === "SLOT_NO_LONGER_AVAILABLE") {
+        setStartsAt("");
+        if (selectedDate) void bookingClient.getAvailability(serviceId, doctorId, selectedDate).then(setAvailability);
+      }
       setError(reason instanceof Error ? reason.message : "Не вдалося створити запис.");
     } finally {
       setLoading(false);
@@ -136,17 +149,17 @@ export function BookingDrawer() {
       >
         <header className="booking-head">
           <div>
-            <p className="booking-kicker">DENTIX · онлайн-запис</p>
-            <h2 id="booking-title">{confirmation ? "Запис створено" : stepLabels[step]}</h2>
+            <p className="booking-kicker">DENTIX · запит на запис</p>
+            <h2 id="booking-title">{confirmation ? "Запит отримано" : stepLabels[step]}</h2>
           </div>
           <button ref={closeRef} className="booking-icon-button" onClick={closeBooking} aria-label="Закрити">
             <X size={20} />
           </button>
         </header>
 
-        {catalog?.environment === "development" ? (
+        {catalog?.environment === "test-ready" ? (
           <div className="booking-demo-flag" role="status">
-            DEVELOPMENT TEST · лікарі, послуги й час — демо-дані
+            TEST_READY · тестові ресурси та графік, 60 хв · це не production онлайн-запис
           </div>
         ) : null}
 
@@ -163,16 +176,16 @@ export function BookingDrawer() {
           {confirmation ? (
             <section className="booking-confirmation">
               <span className="booking-success-mark"><Check size={28} /></span>
-              <p className="booking-kicker">{confirmation.environment === "development" ? "Тестовий запис" : "Підтверджено"}</p>
+              <p className="booking-kicker">TEST · очікує дзвінка</p>
               <h3>{confirmation.reference}</h3>
+              <p>{confirmation.message}</p>
               <dl className="booking-summary">
-                <div><dt>Послуга</dt><dd>{confirmation.service}</dd></div>
-                <div><dt>Лікар</dt><dd>{confirmation.doctor}</dd></div>
-                <div><dt>Дата і час</dt><dd>{formatDateTime(confirmation.startsAt)}</dd></div>
-                <div><dt>Часовий пояс</dt><dd>{confirmation.clinicTimezone}</dd></div>
-                <div><dt>Google Calendar</dt><dd>{confirmation.calendarSyncStatus}</dd></div>
+                <div><dt>Послуга</dt><dd>{service?.name}</dd></div>
+                <div><dt>Лікар</dt><dd>{doctor?.name}</dd></div>
+                <div><dt>Інтервал</dt><dd>{formatDateTime(confirmation.startsAt)}–{formatTime(confirmation.endsAt)}</dd></div>
+                <div><dt>Статус</dt><dd>{confirmation.status}</dd></div>
               </dl>
-              <p className="booking-privacy-note">Запис збережено в test backend. SMS або email не обіцяються.</p>
+              <p className="booking-privacy-note">Інтервал зарезервовано у TEST-контурі до дзвінка адміністратора. Email і SMS не надсилаються.</p>
               <button className="booking-primary" onClick={closeBooking}>Готово</button>
             </section>
           ) : null}
@@ -186,7 +199,7 @@ export function BookingDrawer() {
                   onClick={() => { setServiceId(item.id); setDoctorId(""); }}
                 >
                   <span><strong>{item.name}</strong><small>{item.category}</small></span>
-                  <em>{item.durationMinutes} хв</em>
+                  <em>{catalog.testOnly ? "TEST" : `${item.durationMinutes} хв`}</em>
                 </button>
               ))}
             </div>
@@ -209,8 +222,10 @@ export function BookingDrawer() {
 
           {!confirmation && catalog && step === 2 ? (
             <div className="booking-calendar-list">
+              <label className="booking-date-field"><span>Дата (Europe/Kyiv)</span><input type="date" min={catalog.minDate} max={catalog.maxDate} value={selectedDate} onChange={(event) => { setSelectedDate(event.target.value); setStartsAt(""); }} /></label>
+              <p className="booking-privacy-note">Тестовий інтервал запиту: {catalog.requestDurationMinutes} хв. Доступність оновлюється кожні 30 секунд.</p>
               {loading ? <p className="booking-state">Перевіряємо доступність…</p> : null}
-              {!loading && availability.length === 0 ? <p className="booking-state">Немає доступних слотів.</p> : null}
+              {!loading && selectedDate && availability.every((day) => day.slots.length === 0) ? <p className="booking-state">На цю дату немає доступних інтервалів.</p> : null}
               {availability.map((day) => (
                 <section key={day.date} className="booking-day">
                   <h3>{day.label}</h3>
@@ -244,11 +259,11 @@ export function BookingDrawer() {
 
           {!confirmation && catalog && step === 4 ? (
             <section className="booking-review">
-              <p>Перевірте дані перед створенням запису.</p>
+              <p>Перевірте дані перед надсиланням запиту.</p>
               <dl className="booking-summary">
                 <div><dt>Послуга</dt><dd>{service?.name}</dd></div>
                 <div><dt>Лікар</dt><dd>{doctor?.name}</dd></div>
-                <div><dt>Дата і час</dt><dd>{selectedSlot ? formatDateTime(selectedSlot.startsAt) : "—"}</dd></div>
+                <div><dt>Інтервал</dt><dd>{selectedSlot ? `${formatDateTime(selectedSlot.startsAt)}–${formatTime(selectedSlot.endsAt)}` : "—"}</dd></div>
                 <div><dt>Ім’я</dt><dd>{name}</dd></div>
                 <div><dt>Телефон</dt><dd>{phone}</dd></div>
                 <div><dt>Часовий пояс</dt><dd>{catalog.clinicTimezone}</dd></div>
@@ -265,7 +280,7 @@ export function BookingDrawer() {
             {step < 4 ? (
               <button className="booking-primary" disabled={!canContinue || loading} onClick={() => setStep((value) => value + 1)}>Далі</button>
             ) : (
-              <button className="booking-primary" disabled={loading} onClick={submit}>{loading ? "Створюємо…" : "Підтвердити запис"}</button>
+              <button className="booking-primary" disabled={loading} onClick={submit}>{loading ? "Надсилаємо…" : "Надіслати запит"}</button>
             )}
           </footer>
         ) : null}
@@ -281,3 +296,4 @@ function formatDateTime(value: string) {
     timeZone: "Europe/Kyiv",
   }).format(new Date(value));
 }
+function formatTime(value: string) { return new Intl.DateTimeFormat("uk-UA", { hour: "2-digit", minute: "2-digit", hourCycle: "h23", timeZone: "Europe/Kyiv" }).format(new Date(value)); }
