@@ -21,6 +21,7 @@ export function Header() {
   }, []);
 
   useEffect(() => {
+    if (!open) return;
     const previousBodyOverflow = document.body.style.overflow;
     const previousRootOverflow = document.documentElement.style.overflow;
     document.body.style.overflow = open ? "hidden" : previousBodyOverflow;
@@ -63,8 +64,8 @@ export function Header() {
         )
       : undefined;
     return () => {
-      document.body.style.overflow = previousBodyOverflow;
-      document.documentElement.style.overflow = previousRootOverflow;
+      if (document.body.style.overflow === "hidden") document.body.style.overflow = previousBodyOverflow;
+      if (document.documentElement.style.overflow === "hidden") document.documentElement.style.overflow = previousRootOverflow;
       document.removeEventListener("keydown", onKeyDown);
       window.removeEventListener("resize", onResize);
       if (focusTimer) window.clearTimeout(focusTimer);

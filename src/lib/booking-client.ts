@@ -40,7 +40,7 @@ export const bookingClient = {
   mode: config.enabled ? ("test-ready" as const) : ("disabled" as const),
   async getCatalog() {
     const data = await request<{
-      mode: "TEST_READY" | "LIVE_REQUESTS_READY"; testOnly: boolean; timezone: string; requestDurationMinutes: number;
+      mode: "TEST_READY" | "LIVE_REQUESTS_READY" | "UNAVAILABLE"; testOnly: boolean; timezone: string; requestDurationMinutes: number;
       minDate: string; maxDate: string; consentVersion: string;
       doctors: Array<{ id: string; name: string; role_label: string }>;
       services: Array<{ id: string; name: string; category: string }>;
@@ -69,6 +69,6 @@ export const bookingClient = {
     request<BookingConfirmation>("/requests", {
       method: "POST",
       headers: { "Idempotency-Key": input.idempotencyKey },
-      body: JSON.stringify({ service_id: input.serviceId, doctor_id: input.doctorId, starts_at: input.startsAt, name: input.name, phone: input.phone, preferred_contact: "PHONE", consent_version: "booking-request-test-v1", test_submission: input.testSubmission, idempotency_key: input.idempotencyKey }),
+      body: JSON.stringify({ service_id: input.serviceId, doctor_id: input.doctorId, starts_at: input.startsAt, name: input.name, phone: input.phone, preferred_contact: "PHONE", consent: input.consent, consent_version: input.consentVersion, idempotency_key: input.idempotencyKey }),
     }),
 };
