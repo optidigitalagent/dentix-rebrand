@@ -1,0 +1,646 @@
+{
+  "origin": "http://127.0.0.1:4181",
+  "physicalDevice": false,
+  "rows": [
+    {
+      "engineName": "chromium",
+      "width": 360,
+      "height": 844,
+      "fields": [
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "before": 16,
+          "focused": 16
+        },
+        {
+          "tag": "INPUT",
+          "type": "tel",
+          "before": 16,
+          "focused": 16
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "before": 16,
+          "focused": 16
+        },
+        {
+          "tag": "TEXTAREA",
+          "type": "textarea",
+          "before": 16,
+          "focused": 16
+        }
+      ],
+      "overflow": 0
+    },
+    {
+      "engineName": "chromium",
+      "width": 375,
+      "height": 812,
+      "fields": [
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "before": 16,
+          "focused": 16
+        },
+        {
+          "tag": "INPUT",
+          "type": "tel",
+          "before": 16,
+          "focused": 16
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "before": 16,
+          "focused": 16
+        },
+        {
+          "tag": "TEXTAREA",
+          "type": "textarea",
+          "before": 16,
+          "focused": 16
+        }
+      ],
+      "overflow": 0
+    },
+    {
+      "engineName": "chromium",
+      "width": 390,
+      "height": 844,
+      "fields": [
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "before": 16,
+          "focused": 16
+        },
+        {
+          "tag": "INPUT",
+          "type": "tel",
+          "before": 16,
+          "focused": 16
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "before": 16,
+          "focused": 16
+        },
+        {
+          "tag": "TEXTAREA",
+          "type": "textarea",
+          "before": 16,
+          "focused": 16
+        }
+      ],
+      "overflow": 0
+    },
+    {
+      "engineName": "chromium",
+      "width": 393,
+      "height": 852,
+      "fields": [
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "before": 16,
+          "focused": 16
+        },
+        {
+          "tag": "INPUT",
+          "type": "tel",
+          "before": 16,
+          "focused": 16
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "before": 16,
+          "focused": 16
+        },
+        {
+          "tag": "TEXTAREA",
+          "type": "textarea",
+          "before": 16,
+          "focused": 16
+        }
+      ],
+      "overflow": 0
+    },
+    {
+      "engineName": "chromium",
+      "width": 412,
+      "height": 915,
+      "fields": [
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "before": 16,
+          "focused": 16
+        },
+        {
+          "tag": "INPUT",
+          "type": "tel",
+          "before": 16,
+          "focused": 16
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "before": 16,
+          "focused": 16
+        },
+        {
+          "tag": "TEXTAREA",
+          "type": "textarea",
+          "before": 16,
+          "focused": 16
+        }
+      ],
+      "overflow": 0
+    },
+    {
+      "engineName": "chromium",
+      "width": 430,
+      "height": 932,
+      "fields": [
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "before": 16,
+          "focused": 16
+        },
+        {
+          "tag": "INPUT",
+          "type": "tel",
+          "before": 16,
+          "focused": 16
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "before": 16,
+          "focused": 16
+        },
+        {
+          "tag": "TEXTAREA",
+          "type": "textarea",
+          "before": 16,
+          "focused": 16
+        }
+      ],
+      "overflow": 0
+    },
+    {
+      "engineName": "chromium",
+      "width": 844,
+      "height": 390,
+      "fields": [
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "before": 16,
+          "focused": 16
+        },
+        {
+          "tag": "INPUT",
+          "type": "tel",
+          "before": 16,
+          "focused": 16
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "before": 16,
+          "focused": 16
+        },
+        {
+          "tag": "TEXTAREA",
+          "type": "textarea",
+          "before": 16,
+          "focused": 16
+        }
+      ],
+      "overflow": 0
+    },
+    {
+      "engineName": "chromium",
+      "width": 768,
+      "height": 900,
+      "fields": [
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "before": 16,
+          "focused": 16
+        },
+        {
+          "tag": "INPUT",
+          "type": "tel",
+          "before": 16,
+          "focused": 16
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "before": 16,
+          "focused": 16
+        },
+        {
+          "tag": "TEXTAREA",
+          "type": "textarea",
+          "before": 16,
+          "focused": 16
+        }
+      ],
+      "overflow": 0
+    },
+    {
+      "engineName": "chromium",
+      "width": 1024,
+      "height": 900,
+      "fields": [
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "before": 13,
+          "focused": 13
+        },
+        {
+          "tag": "INPUT",
+          "type": "tel",
+          "before": 13,
+          "focused": 13
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "before": 13,
+          "focused": 13
+        },
+        {
+          "tag": "TEXTAREA",
+          "type": "textarea",
+          "before": 13,
+          "focused": 13
+        }
+      ],
+      "overflow": 0
+    },
+    {
+      "engineName": "chromium",
+      "width": 1440,
+      "height": 900,
+      "fields": [
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "before": 13,
+          "focused": 13
+        },
+        {
+          "tag": "INPUT",
+          "type": "tel",
+          "before": 13,
+          "focused": 13
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "before": 13,
+          "focused": 13
+        },
+        {
+          "tag": "TEXTAREA",
+          "type": "textarea",
+          "before": 13,
+          "focused": 13
+        }
+      ],
+      "overflow": 0
+    },
+    {
+      "engineName": "webkit",
+      "width": 360,
+      "height": 844,
+      "fields": [
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "before": 16,
+          "focused": 16
+        },
+        {
+          "tag": "INPUT",
+          "type": "tel",
+          "before": 16,
+          "focused": 16
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "before": 16,
+          "focused": 16
+        },
+        {
+          "tag": "TEXTAREA",
+          "type": "textarea",
+          "before": 16,
+          "focused": 16
+        }
+      ],
+      "overflow": 0
+    },
+    {
+      "engineName": "webkit",
+      "width": 375,
+      "height": 812,
+      "fields": [
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "before": 16,
+          "focused": 16
+        },
+        {
+          "tag": "INPUT",
+          "type": "tel",
+          "before": 16,
+          "focused": 16
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "before": 16,
+          "focused": 16
+        },
+        {
+          "tag": "TEXTAREA",
+          "type": "textarea",
+          "before": 16,
+          "focused": 16
+        }
+      ],
+      "overflow": 0
+    },
+    {
+      "engineName": "webkit",
+      "width": 390,
+      "height": 844,
+      "fields": [
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "before": 16,
+          "focused": 16
+        },
+        {
+          "tag": "INPUT",
+          "type": "tel",
+          "before": 16,
+          "focused": 16
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "before": 16,
+          "focused": 16
+        },
+        {
+          "tag": "TEXTAREA",
+          "type": "textarea",
+          "before": 16,
+          "focused": 16
+        }
+      ],
+      "overflow": 0
+    },
+    {
+      "engineName": "webkit",
+      "width": 393,
+      "height": 852,
+      "fields": [
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "before": 16,
+          "focused": 16
+        },
+        {
+          "tag": "INPUT",
+          "type": "tel",
+          "before": 16,
+          "focused": 16
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "before": 16,
+          "focused": 16
+        },
+        {
+          "tag": "TEXTAREA",
+          "type": "textarea",
+          "before": 16,
+          "focused": 16
+        }
+      ],
+      "overflow": 0
+    },
+    {
+      "engineName": "webkit",
+      "width": 412,
+      "height": 915,
+      "fields": [
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "before": 16,
+          "focused": 16
+        },
+        {
+          "tag": "INPUT",
+          "type": "tel",
+          "before": 16,
+          "focused": 16
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "before": 16,
+          "focused": 16
+        },
+        {
+          "tag": "TEXTAREA",
+          "type": "textarea",
+          "before": 16,
+          "focused": 16
+        }
+      ],
+      "overflow": 0
+    },
+    {
+      "engineName": "webkit",
+      "width": 430,
+      "height": 932,
+      "fields": [
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "before": 16,
+          "focused": 16
+        },
+        {
+          "tag": "INPUT",
+          "type": "tel",
+          "before": 16,
+          "focused": 16
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "before": 16,
+          "focused": 16
+        },
+        {
+          "tag": "TEXTAREA",
+          "type": "textarea",
+          "before": 16,
+          "focused": 16
+        }
+      ],
+      "overflow": 0
+    },
+    {
+      "engineName": "webkit",
+      "width": 844,
+      "height": 390,
+      "fields": [
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "before": 16,
+          "focused": 16
+        },
+        {
+          "tag": "INPUT",
+          "type": "tel",
+          "before": 16,
+          "focused": 16
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "before": 16,
+          "focused": 16
+        },
+        {
+          "tag": "TEXTAREA",
+          "type": "textarea",
+          "before": 16,
+          "focused": 16
+        }
+      ],
+      "overflow": 0
+    },
+    {
+      "engineName": "webkit",
+      "width": 768,
+      "height": 900,
+      "fields": [
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "before": 16,
+          "focused": 16
+        },
+        {
+          "tag": "INPUT",
+          "type": "tel",
+          "before": 16,
+          "focused": 16
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "before": 16,
+          "focused": 16
+        },
+        {
+          "tag": "TEXTAREA",
+          "type": "textarea",
+          "before": 16,
+          "focused": 16
+        }
+      ],
+      "overflow": 0
+    },
+    {
+      "engineName": "webkit",
+      "width": 1024,
+      "height": 900,
+      "fields": [
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "before": 13,
+          "focused": 13
+        },
+        {
+          "tag": "INPUT",
+          "type": "tel",
+          "before": 13,
+          "focused": 13
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "before": 13,
+          "focused": 13
+        },
+        {
+          "tag": "TEXTAREA",
+          "type": "textarea",
+          "before": 13,
+          "focused": 13
+        }
+      ],
+      "overflow": 0
+    },
+    {
+      "engineName": "webkit",
+      "width": 1440,
+      "height": 900,
+      "fields": [
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "before": 13,
+          "focused": 13
+        },
+        {
+          "tag": "INPUT",
+          "type": "tel",
+          "before": 13,
+          "focused": 13
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "before": 13,
+          "focused": 13
+        },
+        {
+          "tag": "TEXTAREA",
+          "type": "textarea",
+          "before": 13,
+          "focused": 13
+        }
+      ],
+      "overflow": 0
+    }
+  ]
+}

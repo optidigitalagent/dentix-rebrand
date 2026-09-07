@@ -1,0 +1,38 @@
+{
+  "kind": "isolated browser API fixtures, no live mutations",
+  "physicalDeviceVerification": "pending",
+  "reports": [
+    {
+      "engineName": "webkit",
+      "width": 390,
+      "height": 844,
+      "pass": true,
+      "metrics": {
+        "overflow": 0,
+        "viewport": [
+          "width=device-width, initial-scale=1.0"
+        ],
+        "scale": 1
+      },
+      "requests": 5,
+      "physicalDevice": false
+    },
+    {
+      "engineName": "webkit",
+      "width": 844,
+      "height": 390,
+      "pass": true,
+      "metrics": {
+        "overflow": 0,
+        "viewport": [
+          "width=device-width, initial-scale=1.0"
+        ],
+        "scale": 1
+      },
+      "requests": 5,
+      "physicalDevice": false
+    }
+  ],
+  "origin": "http://127.0.0.1:4181",
+  "surface": "published-candidate source rebuilt locally with workflow public environment"
+}

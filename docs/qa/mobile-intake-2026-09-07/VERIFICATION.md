@@ -1,6 +1,6 @@
 # Patient form verification — 2026-09-07
 
-Canonical source: feature/dentix-booking-crm, implementation d129b02 + ccb3714.
+Canonical source: feature/dentix-booking-crm, implementation d129b02 + ccb3714 + a674ee2.
 No patient candidate deployment or live request was performed by this isolated browser suite.
 
 - Build:pages, scoped ESLint and TypeScript --noEmit passed. Existing public unit suite: 13/13.
@@ -17,3 +17,5 @@ No physical iPhone, Android device or Telegram in-app keyboard was exercised. Au
 A first WebKit landscape test compared scroll before Playwright's click with scroll after closing. The click itself adjusted the page by 3px before opening. The corrected assertion compares against the body's captured opening scroll, matching the restoration contract; no product scroll workaround was added for this test.
 
 Owner device check: open Home or Price at your preferred scale; focus name, phone and comment, switch fields, tap keyboard Done; open booking/fallback, scroll to consent and buttons, close and reopen. Repeat after deliberate pinch zoom. Record visualViewport scale before/during/after when available. Expected: no unsolicited magnification, all controls reachable, preferred zoom retained and closing returns to the same page position.
+
+Demo source regression: rebuilt locally with the configured public content/API URLs and booking enabled flag. Stabilized WebKit 390x844 and 844x390 full fixture flows passed (browser-fixtures-demo-webkit.json). Both engines additionally checked Price editable fields and horizontal overflow at all ten requested viewports (demo-price-fonts.json). These are local bundle checks, not deployment or physical-device claims. The initial demo retry occurred while its build was replaced with an empty-env build; the stable configured build was used for both final passes.
