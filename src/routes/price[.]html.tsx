@@ -106,7 +106,7 @@ function PricePage() {
               {(["profilaktyka", "terapiya", "ortodontiya"] as string[]).includes(b.id) ? (
                 <BookingButton
                   className="price-booking-link"
-                  serviceId={import.meta.env.DEV ? ({ profilaktyka: "demo-hygiene", terapiya: "demo-therapy", ortodontiya: "demo-ortho" } as Record<string, string>)[b.id] : undefined}
+                  requestedInterest={b.kicker}
                 >
                   Записатися за напрямком
                 </BookingButton>
