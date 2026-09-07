@@ -4,7 +4,7 @@ export type IntakeStatus = {
 };
 
 export async function getIntakeStatus(): Promise<IntakeStatus> {
-  const bookingUrl = import.meta.env.VITE_DENTIX_BOOKING_API_URL?.trim().replace(/\/+$/, "");
+  const bookingUrl = import.meta.env["VITE_DENTIX_BOOKING_API_URL"]?.trim().replace(/\/+$/, "");
   const leadUrl = import.meta.env.VITE_DENTIX_LEADS_API_URL?.trim();
   const base = bookingUrl || leadUrl?.replace(/\/leads\/?$/, "/booking");
   if (!base) throw new Error("Форма ще не активована. Зателефонуйте до клініки.");

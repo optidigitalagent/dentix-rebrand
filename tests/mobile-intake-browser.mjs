@@ -6,7 +6,7 @@ const origin = process.env.DENTIX_PREVIEW_ORIGIN ?? 'http://127.0.0.1:4179/denti
 const sizes = process.env.DENTIX_QA_SIZES ? JSON.parse(process.env.DENTIX_QA_SIZES) : [[360,844],[375,812],[390,844],[393,852],[412,915],[430,932],[844,390],[768,900],[1024,900],[1440,900]];
 const reports = [];
 const startsAt = '2026-10-01T10:00:00Z', endsAt = '2026-10-01T11:00:00Z';
-for (const [engineName, engine] of Object.entries({chromium,webkit})) {
+for (const [engineName, engine] of Object.entries({chromium,webkit}).filter(([name]) => !process.env.DENTIX_QA_ENGINE || name === process.env.DENTIX_QA_ENGINE)) {
  const browser = await engine.launch();
  try {
   for (const [width,height] of sizes) {
@@ -44,7 +44,7 @@ for (const [engineName, engine] of Object.entries({chromium,webkit})) {
    leadResult=200; await form.getByRole('button',{name:'Залишити заявку'}).click(); await form.getByText(/Дякуємо!/).waitFor();
    const trigger=page.getByRole('button',{name:'Записатися онлайн',exact:true}).first();
    await trigger.scrollIntoViewIfNeeded(); const before=await page.evaluate(()=>({y:scrollY,style:document.body.getAttribute('style')}));
-   await trigger.click(); const dialog=page.getByRole('dialog'); await dialog.getByText('Ізольована послуга',{exact:true}).click(); await next();
+   await trigger.click(); const capturedY=await page.evaluate(()=>-parseFloat(document.body.style.top)); const dialog=page.getByRole('dialog'); await dialog.getByText('Ізольована послуга',{exact:true}).click(); await next();
    await dialog.getByText('Ізольований лікар',{exact:true}).click();await next();
    await checkFields(dialog,width); await dialog.locator('input[type=date]').fill('2026-10-01');await dialog.getByRole('button',{name:'13:00–14:00'}).click();await next();
    await checkFields(dialog,width);
@@ -65,7 +65,7 @@ for (const [engineName, engine] of Object.entries({chromium,webkit})) {
    await dialog.getByLabel('Ім’я *',{exact:true}).fill('Олена');await dialog.getByLabel('Телефон *',{exact:true}).fill('+380000000001');await dialog.locator('input[type=checkbox]').check();if(width===390){await fs.mkdir('docs/qa/mobile-intake-2026-09-07',{recursive:true});await page.screenshot({path:`docs/qa/mobile-intake-2026-09-07/${engineName}-booking390.png`});}await next();
    await dialog.getByRole('button',{name:'Надіслати запит'}).click();await dialog.getByRole('alert').waitFor();assert.ok(await dialog.locator('input[type=date]').isVisible());
    bookingResult=200;await dialog.getByRole('button',{name:'13:00–14:00'}).click();await next();await next();await dialog.getByRole('button',{name:'Надіслати запит'}).click();await dialog.getByText('FIXTURE',{exact:true}).waitFor();await dialog.getByRole('button',{name:'Готово'}).click();
-   const after=await page.evaluate(()=>({y:scrollY,style:document.body.getAttribute('style')}));assert.ok(Math.abs(before.y-after.y)<2,`${engineName} scroll restore ${JSON.stringify({before,after})}`);assert.equal(after.style??'',before.style??'');
+   const after=await page.evaluate(()=>({y:scrollY,style:document.body.getAttribute('style')}));assert.ok(Math.abs(capturedY-after.y)<2,`${engineName} scroll restore ${JSON.stringify({before,after})}`);assert.equal(after.style??'',before.style??'');
    await trigger.click();await dialog.getByText('Ізольована послуга',{exact:true}).waitFor();await page.keyboard.press('Escape');assert.equal(await dialog.count(),0);
    available=false;await trigger.click();await dialog.getByText('Заявка не резервує час прийому.').waitFor();assert.equal(await dialog.getByRole('button',{name:'Залишити заявку'}).isDisabled(),true);assert.equal(await dialog.getByText('Ізольована послуга',{exact:true}).count(),0);await checkFields(dialog,width);await dialog.getByRole('button',{name:'Закрити',exact:true}).click();
    const metrics=await page.evaluate(()=>({overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth,viewport:[...document.querySelectorAll('meta[name=viewport]')].map(x=>x.content),scale:visualViewport?.scale}));assert.ok(metrics.overflow<=1);assert.equal(metrics.viewport.length,1);assert.ok(!/user-scalable|maximum-scale/.test(metrics.viewport[0]));assert.deepEqual(errors,[]);
@@ -77,5 +77,5 @@ for (const [engineName, engine] of Object.entries({chromium,webkit})) {
   }
  } finally{await browser.close();}
 }
-await fs.mkdir('docs/qa/mobile-intake-2026-09-07',{recursive:true});await fs.writeFile('docs/qa/mobile-intake-2026-09-07/browser-fixtures.json',JSON.stringify({kind:'isolated browser API fixtures, no live mutations',physicalDeviceVerification:'pending',reports},null,2));
+await fs.mkdir('docs/qa/mobile-intake-2026-09-07',{recursive:true});await fs.writeFile(`docs/qa/mobile-intake-2026-09-07/browser-fixtures${process.env.DENTIX_QA_REPORT_SUFFIX??""}.json`,JSON.stringify({kind:'isolated browser API fixtures, no live mutations',physicalDeviceVerification:'pending',reports},null,2));
 async function checkFields(scope,width){const fields=scope.locator('input:not([type=checkbox]):not([type=radio]):not([tabindex="-1"]),select,textarea');for(let i=0;i<await fields.count();i++){const field=fields.nth(i);if(!await field.isVisible())continue;if(width<=900)assert.ok(await field.evaluate(e=>parseFloat(getComputedStyle(e).fontSize))>=16);await field.focus();if(width<=900)assert.ok(await field.evaluate(e=>parseFloat(getComputedStyle(e).fontSize))>=16);await field.blur();}}

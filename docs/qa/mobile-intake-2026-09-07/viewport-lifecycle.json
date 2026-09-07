@@ -1,0 +1,33 @@
+{
+  "physicalDeviceVerification": "pending",
+  "results": [
+    {
+      "engine": "chromium",
+      "geometry": {
+        "height": 300,
+        "layerHeight": 300,
+        "closeVisible": true,
+        "scrollable": true,
+        "bodyHeight": 211
+      },
+      "intentionalScale": {
+        "before": 2,
+        "after": 2,
+        "method": "Chromium CDP page scale emulation"
+      },
+      "physicalDevice": false
+    },
+    {
+      "engine": "webkit",
+      "geometry": {
+        "height": 300,
+        "layerHeight": 300,
+        "closeVisible": true,
+        "scrollable": true,
+        "bodyHeight": 211
+      },
+      "intentionalScale": null,
+      "physicalDevice": false
+    }
+  ]
+}
