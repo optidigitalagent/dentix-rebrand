@@ -70,9 +70,9 @@ export function BookingDrawer() {
           }
         }
       })
-      .catch((reason: unknown) =>
-        setError(reason instanceof Error ? reason.message : "Онлайн-запис тимчасово недоступний."),
-      )
+      .catch((reason: unknown) => {
+        if (active) setError(reason instanceof Error && !(reason instanceof TypeError) ? reason.message : "Онлайн-запис тимчасово недоступний.");
+      })
       .finally(() => { if (active) setLoading(false); });
     const timer = window.setTimeout(() => closeRef.current?.focus({ preventScroll: true }), 60);
     const onKeyDown = (event: KeyboardEvent) => {
@@ -115,9 +115,9 @@ export function BookingDrawer() {
     bookingClient
       .getAvailability(serviceId, doctorId, selectedDate)
       .then((value) => { if (active) setAvailability(value); })
-      .catch((reason: unknown) =>
-        setError(reason instanceof Error ? reason.message : "Не вдалося завантажити час."),
-      )
+      .catch((reason: unknown) => {
+        if (active) setError(reason instanceof Error && !(reason instanceof TypeError) ? reason.message : "Не вдалося завантажити час.");
+      })
       .finally(() => { if (active) setLoading(false); });
     const refresh = () => bookingClient.getAvailability(serviceId, doctorId, selectedDate).then((value) => { if (active) setAvailability(value); }).catch(() => undefined);
     const timer = window.setInterval(refresh, 30_000);

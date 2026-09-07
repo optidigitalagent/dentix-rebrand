@@ -14,3 +14,11 @@ test("patient details require a plausible phone and consent", () => {
 test("patient details accept valid contact input", () => {
   assert.equal(isPatientBookingDetailsValid({ name: "Анна", phone: "+380 50 111 22 33", consent: true }), true);
 });
+
+test("ordinary Ukrainian names do not select the environment or require a prefix", () => {
+  for (const name of ["Олена", "Іван Петренко", "Анна-Марія", "Мар’ян"]) {
+    assert.equal(isPatientBookingDetailsValid({ name, phone: "+380000000001", consent: true }), true);
+  }
+  assert.equal(isPatientBookingDetailsValid({ name: "А".repeat(121), phone: "+380000000001", consent: true }), false);
+  assert.equal(isPatientBookingDetailsValid({ name: "Олена", phone: "1".repeat(16), consent: true }), false);
+});

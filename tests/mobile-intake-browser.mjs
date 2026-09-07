@@ -40,7 +40,7 @@ for (const [engineName, engine] of Object.entries({chromium,webkit}).filter(([na
    await form.locator('input[type=checkbox]').check();
    await form.getByRole('button',{name:'Залишити заявку'}).click();
    await form.getByRole('alert').waitFor(); await checkFields(form,width);
-   leadResult=0; await form.getByRole('button',{name:'Залишити заявку'}).click(); await form.getByRole('button',{name:'Залишити заявку'}).waitFor();
+   leadResult=0; await Promise.all([page.waitForEvent('requestfailed',{predicate:request=>request.method()==='POST'&&new URL(request.url()).pathname.endsWith('/leads')}),form.getByRole('button',{name:'Залишити заявку'}).click()]); await page.waitForFunction(()=>{const button=document.querySelector('.lead-form button[type=submit]');return button&&!button.disabled;});
    leadResult=200; await form.getByRole('button',{name:'Залишити заявку'}).click(); await form.getByText(/Дякуємо!/).waitFor();
    const trigger=page.getByRole('button',{name:'Записатися онлайн',exact:true}).first();
    await trigger.scrollIntoViewIfNeeded(); const before=await page.evaluate(()=>({y:scrollY,style:document.body.getAttribute('style')}));
